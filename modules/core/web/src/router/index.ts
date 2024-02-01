@@ -15,6 +15,7 @@ import FeedbackReport from "../views/ViewFeedbackReport.vue";
 import FeedbackOverview from "../views/ViewFeedbackOverview.vue";
 import ViewMembers from "../views/ViewMembers.vue";
 import ViewTaskSubmissions from "../views/ViewTaskSubmissions.vue";
+import ViewOralExaminatorVue from "@/views/ViewOralExaminator.vue";
 
 import authService from "@/services/auth.service";
 
@@ -102,6 +103,12 @@ const router = createRouter({
       component: ViewTaskSubmissions,
       
     },
+    {
+      path: "/OralExaminator",
+      name: "ViewOralExaminator",
+      component: ViewOralExaminatorVue,
+      
+    },
   ],
 });
 
@@ -125,6 +132,7 @@ router.beforeEach(async (to, from, next) => {
     "FeedbackReport",
     "ViewMembers",
     "ViewTaskSubmissions",
+    "ViewOralExaminator"
   ];
   const adminRequired = !nonAdminPages.includes(to.name as string);
   const role = localStorage.getItem("role");
