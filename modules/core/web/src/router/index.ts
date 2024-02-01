@@ -15,7 +15,8 @@ import FeedbackReport from "../views/ViewFeedbackReport.vue";
 import FeedbackOverview from "../views/ViewFeedbackOverview.vue";
 import ViewMembers from "../views/ViewMembers.vue";
 import ViewTaskSubmissions from "../views/ViewTaskSubmissions.vue";
-import ViewOralExaminatorVue from "@/views/ViewOralExaminator.vue";
+import ViewTestLogin from "@/views/oralExam/ViewTestLogin.vue";
+import ViewDashStudent from "@/views/oralExam/ViewDashStudent.vue";
 
 import authService from "@/services/auth.service";
 
@@ -104,10 +105,14 @@ const router = createRouter({
       
     },
     {
-      path: "/OralExaminator",
-      name: "ViewOralExaminator",
-      component: ViewOralExaminatorVue,
-      
+      path: "/testLogin",
+      name: "ViewTestLogin",
+      component: ViewTestLogin,
+    },
+    {
+      path: "/dashStudent",
+      name: "ViewDashStudent",
+      component: ViewDashStudent,
     },
   ],
 });
@@ -132,7 +137,8 @@ router.beforeEach(async (to, from, next) => {
     "FeedbackReport",
     "ViewMembers",
     "ViewTaskSubmissions",
-    "ViewOralExaminator"
+    "ViewTestLogin",
+    "ViewDashStudent"
   ];
   const adminRequired = !nonAdminPages.includes(to.name as string);
   const role = localStorage.getItem("role");

@@ -44,6 +44,10 @@ const wordReplacement = (word: string) => {
       return "Alle Kurse";
     case "task":
       return "Aufgabe";
+    case "dashStudent":
+      return "Dashboard";
+    case "dashDozent":
+      return "Dashboard";
     default:
       return word;
   }
