@@ -22,12 +22,13 @@
         <v-list-item to="/home" active-class="active" prepend-icon="mdi-home-variant" title="Startseite" value="home" />
         <v-list-item to="/course" active-class="active" prepend-icon="mdi-file-multiple" title="Alle Kurse"
           value="course" />
-        <v-list-item to="/oralExam" active-class="active" prepend-icon="mdi-pencil-ruler" title="Oral Examinator"
+        <v-list-item to="/oralExam2" active-class="active" prepend-icon="mdi-pencil-ruler" title="Oral Examinator"
           value="examinator" />
         <v-list-item to="/modeling" active-class="active" prepend-icon="mdi-pencil-ruler" title="Modellierung"
           value="modeling" />
         <v-list-item to="/feedbackReport" active-class="active" prepend-icon="mdi-bug" title="Feedback" value="report" />
-        <v-list-item v-if="admin" to="/feedbackOverview" active-class="active" prepend-icon="mdi-view-dashboard-variant-outline" title="Feedback Overview" value="report" />
+        <v-list-item v-if="admin" to="/feedbackOverview" active-class="active"
+          prepend-icon="mdi-view-dashboard-variant-outline" title="Feedback Overview" value="report" />
       </v-list>
     </v-navigation-drawer>
 
