@@ -15,7 +15,7 @@
                     Kursinhalte nutzen.</p>
             </v-card-text>
             <v-card-actions class="card-action">
-                <v-btn to="/course">ZU DEN KURSEN</v-btn>
+                <v-btn to="/">ZU DEN KURSEN</v-btn>
             </v-card-actions>
         </v-card>
 
@@ -29,43 +29,59 @@
             <v-card-text class="card-text">
                 <p>Hier siehst du alle Kurse in denen du dieses Semester eingetragen bist.</p>
                 <br />
-                <v-card variant="outlined" class="newscard">
-                    <v-card-title class="newscard_title">Neuigkeiten:</v-card-title>
-                    <v-card-text>
-                        <p v-for="item in test" :key="item">{{ item }}</p>
-                    </v-card-text>
-                </v-card>
             </v-card-text>
 
             <v-card-actions>
-                <v-btn to="/course">ZU MEINEN KURSEN</v-btn>
+                <v-btn to="/">ZU MEINEN KURSEN</v-btn>
             </v-card-actions>
         </v-card>
 
 
         <v-card class="card">
             <v-card-title class="card-title">Feedback Abgeben</v-card-title>
-            <v-card-subtitle class="card-subtitle">Bewertung | Feedback | Lernstand | Aktivität</v-card-subtitle>
-            <v-card-text class="card-text"> In deinem persönlich Dashboard behältst du immer die Übersicht. Hier werden dir
-                alle Informationen zu Bewertungen, Feedback, Lernstand oder Aktivität angezeigt. </v-card-text>
-            <v-card-text class="card-text">
-                <v-card variant="outlined" class="newscard">
-                    <v-card-title class="newscard_title">Neuigkeiten:</v-card-title>
-                    <v-card-text>
-                        <p v-for="item in test" :key="item">{{ item }}</p>
-                    </v-card-text>
-                </v-card>
+            <v-card-subtitle class="card-subtitle"></v-card-subtitle>
+            <v-card-text class="card-text"> Hier bieten wir dir die Möglichkeit, Feedback zu hinterlassen, falls du auf
+                Probleme stößt oder Unterstützung benötigst.</v-card-text>
+            <v-card-text class="text">
+                <v-text-field class="custom-textarea" v-model="feedback.text"></v-text-field>
             </v-card-text>
             <v-card-actions>
-                <v-btn to="/dashboard">ZUM DASHBOARD</v-btn>
+                <v-spacer>
+                    <v-btn @click="sendFeedback">Abschicken</v-btn>
+                </v-spacer>
             </v-card-actions>
         </v-card>
+        <v-snackbar v-model="snackbarSuccess" :timeout="2500"> Vielen Dank für dein Feedback!</v-snackbar>
     </div>
 </template>
 
 <script setup lang="ts">
-const test = ["News 1", "News 2"];
+import { ref } from 'vue';
+import Feedback from "@/model/Feedback";
+import User from "../../model/User";
+import feedbackService from "../../services/feedback.service";
+import BasicBackground from "@/components/BasicBackground.vue";
+import { useAuthUserStore } from "@/stores/authUserStore";
+
+const authUserStore = useAuthUserStore();
+
+const feedback = ref<Feedback>({} as Feedback);
+const snackbarSuccess = ref(false);
+
+const sendFeedback = () => {
+  const user: User = authUserStore.user as User;
+  feedback.value.firstName = user.username;
+  feedback.value.lastName = user.email;
+
+  feedbackService.createFeedback(feedback.value).then(() => {
+    snackbarSuccess.value = true;
+    feedback.value = {} as Feedback;
+  });
+};
+
 </script>
+
+
 
 <style scoped lang="scss">
 .container {
@@ -93,6 +109,11 @@ const test = ["News 1", "News 2"];
 .card-title {
   padding-bottom: 0;
 }
+
+// .custom-textarea {
+//   width: 100%;
+//   height: 50px;
+// }
 
 .card-subtitle {
   color: rgb(var(--v-theme-primary-dark));
