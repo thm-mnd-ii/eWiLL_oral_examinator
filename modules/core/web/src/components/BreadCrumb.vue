@@ -44,6 +44,8 @@ const wordReplacement = (word: string) => {
       return "Alle Kurse";
     case "task":
       return "Aufgabe";
+    case "testLogin":
+      return "Login";
     case "dashStudent":
       return "Dashboard";
     case "dashDozent":
@@ -59,16 +61,24 @@ onMounted(() => {
 
 const calculateBreadCrumb = async () => {
   // add items to breadcrumb
-  const path = props.link.split("/").filter((item) => item != "");
+  const path = props.link.split("/").filter((item) => item !== "");
 
   let breadcrumbItem: { title: string; disabled: boolean; href: string };
 
   for (let i = 0; i < path.length; i++) {
     const item = path[i];
     const title = wordReplacement(item);
-    // create relative link for item
-    const link = "/" + path.slice(0, i + 1).join("/");
-    const disabled = i == path.length - 1;
+
+    let link = "/";
+    if (i === 0) {
+      // Add hash only for the first item in the path
+      link += "#/";
+    }
+
+    // Append the current segment to the link
+    link += path.slice(0, i + 1).join("/");
+
+    const disabled = i === path.length - 1;
 
     breadcrumbItem = {
       title: title,
