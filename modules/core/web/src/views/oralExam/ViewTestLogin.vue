@@ -28,12 +28,12 @@ const router = useRouter();
 
 // Function to redirect to student page
 const redirectToStudent = () => {
-  router.push({ path: '/dashStudent' });
+  router.push({ path: '/testLogin/dashStudent' });
 };
 
 // Function to redirect to dozent page
 const redirectToDozent = () => {
-  router.push({ path: '/dashDozent' });
+  router.push({ path: '/testLogin/dashDozent' });
 };
 </script>
 

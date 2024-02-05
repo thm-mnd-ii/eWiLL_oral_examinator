@@ -112,7 +112,7 @@ const router = createRouter({
       component: ViewTestLogin,
     },
     {
-      path: "/dashStudent",
+      path: "/testLogin/dashStudent",
       name: "ViewDashStudent",
       component: ViewDashStudent,
     },
@@ -122,7 +122,7 @@ const router = createRouter({
       component: ViewCoursesDozent,
     },
     {
-      path: "/dashDozent",
+      path: "/testLogin/dashDozent",
       name: "ViewDashDozent",
       component: ViewDashDozent,
     },
