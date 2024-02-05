@@ -9,11 +9,11 @@
       <v-checkbox v-model="checkboxParticipation" label="Teilnahme" @change="filterCourseList"></v-checkbox>
     </v-row>
     <v-data-table :headers="headers" :items="displayedCourses" item-value="name" class="elevation-1" :search="search" density="default" height="480px" @click:row="openCourseOrSignUp">
-      <template #item.course.active="{ item }">
+      <template #item.item.course="{ item }">
         <v-icon v-if="item.course.active == false" icon="mdi-close-circle" color="error"></v-icon>
         <v-icon v-if="item.course.active == true" icon="mdi-check-circle" color="success"></v-icon>
       </template>
-      <template #item.member="{ item }">
+      <template #item.item.member="{ item }">
         <v-icon v-if="item.member == true" icon="mdi-check-bold" color="success"></v-icon>
       </template>
     </v-data-table>
@@ -26,6 +26,7 @@ import { useRouter } from "vue-router";
 import { useAuthUserStore } from "../stores/authUserStore";
 import CourseAndParticipationPL from "@/model/course/CourseAndParticipationPL";
 import courseService from "../services/course.service";
+
 
 const router = useRouter();
 const authUserStore = useAuthUserStore();

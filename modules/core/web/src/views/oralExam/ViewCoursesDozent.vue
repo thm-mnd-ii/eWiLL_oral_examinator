@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/valid-v-slot -->
 <template>
   <div class="container">
-    <CoursesList ref="coursesList"></CoursesList>
+    <CoursesListDozent ref="coursesListDozent"></CoursesListDozent>
     <v-btn v-if="isUser" id="createCourseBtn" color="primary-dark" @click="createCourse">Kurs erstellen</v-btn>
   </div>
   <DialogCreateCourse ref="dialogCreateCourse"></DialogCreateCourse>
@@ -11,7 +11,7 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import DialogCreateCourse from "@/dialog/DialogCreateCourse.vue";
-import CoursesList from "@/components/CoursesList.vue";
+import CoursesListDozent from "@/components/oralExaminator/CoursesListDozent.vue";
 import { useAuthUserStore } from "@/stores/authUserStore";
 import GlobalRoles from "@/enums/GlobalRoles";
 
@@ -19,13 +19,13 @@ const authUserStore = useAuthUserStore();
 const router = useRouter();
 
 const dialogCreateCourse = ref<typeof DialogCreateCourse>();
-const coursesList = ref<typeof CoursesList>();
+const coursesListDozent = ref<typeof CoursesListDozent>();
 
 const isAdmin = ref(false);
 const isUser = ref();
 
 onMounted(() => {
-  coursesList.value?.loadCourses();
+  coursesListDozent.value?.loadCourses();
 
   isAdmin.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_ADMIN)!;
   isUser.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_USER);

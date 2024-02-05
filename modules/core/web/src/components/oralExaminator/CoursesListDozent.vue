@@ -27,6 +27,7 @@ import { useAuthUserStore } from "c:/Users/Matthias/eWiLL_oral_examinator-1/modu
 import CourseAndParticipationPL from "c:/Users/Matthias/eWiLL_oral_examinator-1/modules/core/web/src/model/course/CourseAndParticipationPL";
 import courseService from "c:/Users/Matthias/eWiLL_oral_examinator-1/modules/core/web/src/services/course.service";
 
+
 const router = useRouter();
 const authUserStore = useAuthUserStore();
 
@@ -75,10 +76,13 @@ const filterCourseList = () => {
   displayedCourses.value = filteredList;
 };
 
+
+
 const openCourseOrSignUp = (row: any, item: any) => {
-  if (item.item.member == false) router.push("/coursesDozent" + item.item.course.id + "/signup");
-  else router.push("/coursesDozent" + item.item.course.id);
-};
+  if (item.member == false) router.push("/coursesDozent" + item.course.id + "/signup");
+  else router.push("/coursesDozent" + item.course.id);
+}; 
+
 
 defineExpose({
   loadCourses,
