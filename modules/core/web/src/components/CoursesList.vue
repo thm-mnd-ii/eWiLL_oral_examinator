@@ -77,9 +77,12 @@ const filterCourseList = () => {
 };
 
 const openCourseOrSignUp = (row: any, item: any) => {
-  if (item.item.member == false) router.push("/course/" + item.item.course.id + "/signup");
-  else router.push("/course/" + item.item.course.id);
-};
+  if (item.member == false) router.push("/course/" + item.course.id + "/signup");
+  else router.push("/course/" + item.course.id);
+}; 
+
+
+
 
 defineExpose({
   loadCourses,

@@ -28,6 +28,7 @@ onMounted(() => {
   coursesList.value?.loadCourses();
 
   isAdmin.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_ADMIN)!;
+  
 });
 
 const createCourse = () => {

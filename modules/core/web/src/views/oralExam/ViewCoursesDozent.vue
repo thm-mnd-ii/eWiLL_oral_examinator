@@ -10,10 +10,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
-import DialogCreateCourse from "@/dialog/DialogCreateCourse.vue";
-import CoursesListDozent from "@/components/oralExaminator/CoursesListDozent.vue";
-import { useAuthUserStore } from "@/stores/authUserStore";
-import GlobalRoles from "@/enums/GlobalRoles";
+import DialogCreateCourse from "../../dialog/DialogCreateCourse.vue";
+import CoursesListDozent from "../../components/oralExaminator/CoursesListDozent.vue";
+import { useAuthUserStore } from "../../stores/authUserStore";
+import GlobalRoles from "../../enums/GlobalRoles";
 
 const authUserStore = useAuthUserStore();
 const router = useRouter();

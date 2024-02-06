@@ -15,7 +15,7 @@
                     Kursinhalte nutzen.</p>
             </v-card-text>
             <v-card-actions class="card-action">
-                <v-btn to="/coursesDozent">ZU DEN KURSEN</v-btn>
+                <v-btn to="/course">ZU DEN KURSEN</v-btn>
             </v-card-actions>
         </v-card>
 
