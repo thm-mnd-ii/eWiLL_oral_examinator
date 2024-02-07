@@ -23,6 +23,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { useAuthUserStore } from "../stores/authUserStore";
 import CourseAndParticipationPL from "@/model/course/CourseAndParticipationPL";
 import courseService from "../services/course.service";
@@ -30,6 +31,7 @@ import courseService from "../services/course.service";
 
 const router = useRouter();
 const authUserStore = useAuthUserStore();
+const route = useRoute();
 
 const search = ref("");
 const headers = [
@@ -77,8 +79,10 @@ const filterCourseList = () => {
 };
 
 const openCourseOrSignUp = (row: any, item: any) => {
-  if (item.member == false) router.push("/course/" + item.course.id + "/signup");
-  else router.push("/course/" + item.course.id);
+  console.log(item.item.value.course.id);
+  console.log(route.path)
+  if (item.member == false) router.push(route.path +'/' + item.item.value.course.id+ "/signup");
+  else router.push(route.path +'/' + item.item.value.course.id);
 }; 
 
 

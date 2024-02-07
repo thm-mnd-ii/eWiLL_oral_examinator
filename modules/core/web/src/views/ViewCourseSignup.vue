@@ -5,8 +5,6 @@
         <v-card-title>Für den Kurs {{ course?.name }} einschreiben</v-card-title>
 
         <v-card-subtitle>
-          Verantwortlich: Not yet implemented <br />
-          Semester: Not yet implemented <br />
           Standort: {{ course?.location }}
         </v-card-subtitle>
       </v-card-item>
@@ -75,7 +73,7 @@ const signup = () => {
 <style scoped lang="scss">
 .card {
   max-width: 600px;
-  background-color: #ffcc00;
+  background-color: #12BC00;
 }
 
 .button {
