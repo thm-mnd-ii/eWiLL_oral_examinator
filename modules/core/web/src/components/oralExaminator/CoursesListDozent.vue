@@ -1,16 +1,6 @@
 <!-- eslint-disable vue/valid-v-slot -->
 <template>
   <div class="container">
-    <v-text-field v-model="search" label="Search" density="compact" prepend-icon="mdi-magnify" variant="underlined"
-      hide-details class="search-bar"></v-text-field>
-    <v-row>
-      <v-checkbox v-model="checkboxActive" label="Nur aktive Kurse anzeigen" @change="filterCourseList"></v-checkbox>
-      <v-checkbox v-model="checkboxFriedberg" label="Friedberg" @change="filterCourseList"
-        @click="checkboxGießen = false"></v-checkbox>
-      <v-checkbox v-model="checkboxGießen" label="Gießen" @change="filterCourseList"
-        @click="checkboxFriedberg = false"></v-checkbox>
-      <v-checkbox v-model="checkboxParticipation" label="Teilnahme" @change="filterCourseList"></v-checkbox>
-    </v-row>
     <v-data-table :headers="headers" :items="displayedCourses" item-value="name" class="elevation-1" :search="search"
       density="default" height="480px" @click:row="openCourseOrSignUp">
       <template #item.item.course="{ item }">
@@ -51,11 +41,6 @@ const headers = [
 const displayedCourses = ref<CourseAndParticipationPL[]>([]);
 const allCourses = ref<CourseAndParticipationPL[]>([]);
 
-// Checkboxes
-const checkboxActive = ref(false);
-const checkboxFriedberg = ref(false);
-const checkboxGießen = ref(false);
-const checkboxParticipation = ref(false);
 
 const loadCourses = () => {
   let userId = authUserStore.auth.user?.id;
@@ -64,7 +49,9 @@ const loadCourses = () => {
     courseService
       .getAllCourses(userId)
       .then((data) => {
-        allCourses.value = data;
+        // Filtern der Kurse nach dem Kursnamen "Datenbank"
+        const databaseCourses = data.filter(course => course.course.name.startsWith("Datenbankmanagement"));
+        allCourses.value = databaseCourses;
         displayedCourses.value = allCourses.value;
       })
       .catch((error) => {
@@ -75,23 +62,20 @@ const loadCourses = () => {
   }
 };
 
-const filterCourseList = () => {
-  let filteredList: CourseAndParticipationPL[] = allCourses.value;
-  if (checkboxActive.value) filteredList = filteredList.filter((item) => item.course.active == true);
-  if (checkboxFriedberg.value) filteredList = filteredList.filter((item) => item.course.location == "Friedberg");
-  if (checkboxGießen.value) filteredList = filteredList.filter((item) => item.course.location == "Gießen");
-  if (checkboxParticipation.value) filteredList = filteredList.filter((item) => item.member == true);
-  displayedCourses.value = filteredList;
-};
 
 
 // id abfangen
 const openCourseOrSignUp = (row: any, item: any) => {
-  console.log(item.item.value.course.id);
-  console.log(route.path);
-  if (item.member == false) router.push("/course/" + item.item.value.course.id + "/signup");
-  else router.push(route.path + "/" + item.item.value.course.id);
+  let roleId = authUserStore.auth.user?.roles[0]; // Greife auf den ersten Eintrag im Array zu
+  console.log(roleId); // Gibt 'ROLE_ADMIN' aus
+  if (item.member == false) router.push(route.path +'/' + item.item.value.course.id+ "/signup");
+
+  else if(roleId === "ROLE_ADMIN")router.push(route.path + "/" + item.item.value.course.id);
+
+  else console.log("start");
 }; 
+
+
 
 
 

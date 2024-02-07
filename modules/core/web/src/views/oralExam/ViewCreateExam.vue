@@ -12,7 +12,7 @@
             <v-tooltip activator="parent" location="bottom">Teilnehmer</v-tooltip>
           </v-btn>
 
-          <v-btn variant="text" color="dark-gray" @click="editCourse">
+          <v-btn v-if="courseRole == 'OWNER'" variant="text" color="dark-gray" @click="editCourse">
             <v-icon size="x-large">mdi-cog</v-icon>
             <v-tooltip activator="parent" location="bottom">Kurs bearbeiten</v-tooltip>
           </v-btn>
@@ -136,13 +136,6 @@ const editCourse = () => {
   }
 };
 
-const createTask = () => {
-  if (dialogCreateTask.value) {
-    dialogCreateTask.value.openDialog().then(() => {
-      taskList.value!.loadTasks(courseId.value);
-    });
-  }
-};
 
 const openMembersView = () => {
   router.push(route.path + "/members");
