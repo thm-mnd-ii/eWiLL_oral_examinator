@@ -9,20 +9,22 @@ class CourseService {
     return axios.get("/api/course/" + id);
   }
 
-  getAllCourses(userId: number): Promise<CourseAndParticipationPL[]> {
-    return new Promise<CourseAndParticipationPL[]>((resolve, reject) => {
-      axios
-        .get("/api/course/all/" + userId)
-        .then((response) => {
-          const courses: CourseAndParticipationPL[] = response.data;
-          resolve(courses);
-        })
-        .catch((error) => {
-          console.log(error);
-          reject();
-        });
-    });
-  }
+ getAllCourses(userId: number): Promise<CourseAndParticipationPL[]> {
+  return new Promise<CourseAndParticipationPL[]>((resolve, reject) => {
+    axios
+      .get(`/api/course/all/${userId}`) // Annahme: Die API unterstützt die Filterung nach dem Ersteller
+      .then((response) => {
+        const courses: CourseAndParticipationPL[] = response.data;
+        resolve(courses);
+        console.log(courses);
+      })
+      .catch((error) => {
+        console.log(error);
+        reject();
+      });
+  });
+}
+
 
   postCourse(course: CoursePL) {
     course.id = 0;

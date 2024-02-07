@@ -9,18 +9,24 @@
         <v-card-text>
           <v-row>
             <v-col>
-              <v-text-field v-model="course.name" color="primary" variant="underlined" label="Name" :rules="[(v: any) => !!v || 'Item is required']" required></v-text-field>
-              <v-text-field v-model="course.description" color="primary" variant="underlined" label="Beschreibung" :rules="[(v: any) => !!v || 'Item is required']" required></v-text-field>
-              <v-text-field v-model="course.keyPassword" color="primary" variant="underlined" label="Passwort" :rules="[(v: any) => !!v || 'Item is required']" required></v-text-field>
+              <v-text-field v-model="course.name" color="primary" variant="underlined" label="Name"
+                :rules="[(v: any) => !!v || 'Item is required']" required></v-text-field>
+              <v-text-field v-model="course.description" color="primary" variant="underlined" label="Beschreibung"
+                :rules="[(v: any) => !!v || 'Item is required']" required></v-text-field>
+              <v-text-field v-model="course.keyPassword" color="primary" variant="underlined" label="Passwort"
+                :rules="[(v: any) => !!v || 'Item is required']" required></v-text-field>
             </v-col>
             <v-col>
-              <v-select v-model="course.semester" color="primary" variant="underlined" label="Semester" :rules="[(v: any) => !!v || 'Item is required']" required :items="semesters" item-title="name" return-object ></v-select> 
-              <v-select v-model="course.location" color="primary" variant="underlined" label="Standort" :items="['Friedberg', 'Gießen']" :rules="[(v: any) => !!v || 'Item is required']" required></v-select>
+              <v-select v-model="course.semester" color="primary" variant="underlined" label="Semester"
+                :rules="[(v: any) => !!v || 'Item is required']" required :items="semesters" item-title="name"
+                return-object></v-select>
+              <v-select v-model="course.location" color="primary" variant="underlined" label="Standort"
+                :items="['Friedberg', 'Gießen']" :rules="[(v: any) => !!v || 'Item is required']" required></v-select>
             </v-col>
           </v-row>
         </v-card-text>
         <v-card-actions class="card-actions">
-  
+
           <v-btn v-if="!newCourse" color="error" variant="flat" @click="deleteCourse">Kurs löschen</v-btn>
           <v-spacer></v-spacer>
           <v-btn color="error" variant="flat" @click="_cancel"> Abbrechen </v-btn>
@@ -29,7 +35,8 @@
         </v-card-actions>
       </v-form>
     </v-card>
-    <v-snackbar v-model="snackbarFail" :timeout="2500"> Kurs konnte nicht erstellt werden, bitte versuchen Sie es erneut </v-snackbar>
+    <v-snackbar v-model="snackbarFail" :timeout="2500"> Kurs konnte nicht erstellt werden, bitte versuchen Sie es erneut
+    </v-snackbar>
   </v-dialog>
   <DialogConfirmVue ref="dialogConfirm"></DialogConfirmVue>
 </template>

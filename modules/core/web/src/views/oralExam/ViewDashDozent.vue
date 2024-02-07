@@ -11,7 +11,8 @@
                 <span>Auflistung aller verfübaren Kurse</span>
             </v-card-subtitle>
             <v-card-text class="card-text">
-                <p>Hier sehen Sie alle Kurse die Ihnen zur Verfügung stehen. Sie können sich in jeden Kurs einschreiben und die
+                <p>Hier sehen Sie alle Kurse die Ihnen zur Verfügung stehen. Sie können sich in jeden Kurs einschreiben und
+                    die
                     Kursinhalte nutzen.</p>
             </v-card-text>
             <v-card-actions class="card-action">
@@ -38,7 +39,7 @@
             </v-card-text>
 
             <v-card-actions>
-                <v-btn to="/course">ZU MEINEN KURSEN</v-btn>
+                <v-btn @click="redirectToDozentCourses">ZU MEINEN KURSEN</v-btn>
             </v-card-actions>
         </v-card>
 
@@ -81,6 +82,16 @@
 
 <script setup lang="ts">
 const test = ["News 1", "News 2"];
+
+import {useRouter} from 'vue-router';
+
+
+const router = useRouter();
+
+// Function to redirect to student page
+const redirectToDozentCourses = () => {
+  router.push({ path: '/testLogin/dashDozent/coursesDozent'});
+};
 </script>
 
 <style scoped lang="scss">

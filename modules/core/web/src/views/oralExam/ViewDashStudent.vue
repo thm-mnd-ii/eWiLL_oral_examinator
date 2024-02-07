@@ -1,53 +1,50 @@
 
 <template>
-    <!-- Responsive content as grid base 2x2 -->
+    <!-- Responsiver Inhalt als Gitter im 2x2-Layout -->
     <div class="container">
-        <!-- Obere V-Cards -->
+        <!-- Obere V-Karten -->
         <v-card class="card">
             <v-card-title class="card-title">
-                <span>Alle Kurse</span>
+                <span>Alle Prüfungen</span>
             </v-card-title>
             <v-card-subtitle class="card-subtitle">
-                <span>Auflistung aller verfübaren Kurse</span>
+                <span>Übersicht aller verfügbaren Prüfungen</span>
             </v-card-subtitle>
             <v-card-text class="card-text">
-                <p>Hier siehst du alle Kurse die dir zur Verfügung stehen. Du kannst dich in jeden Kurs einschreiben und die
-                    Kursinhalte nutzen.</p>
+                <p>Hier findest du eine Auflistung aller verfügbaren Prüfungen.</p>
             </v-card-text>
             <v-card-actions class="card-action">
-                <v-btn to="/">ZU DEN KURSEN</v-btn>
+                <v-btn to="/">ZU DEN PRÜFUNGEN</v-btn>
             </v-card-actions>
         </v-card>
 
         <v-card class="card">
             <v-card-title class="card-title">
-                <span>Meine Kurse</span>
+                <span>Meine Prüfungsergebnisse</span>
             </v-card-title>
             <v-card-subtitle class="card-subtitle">
-                <span>Übersicht über deine Kurse</span>
+                <span>Übersicht deiner abgeschlossenen Prüfungen</span>
             </v-card-subtitle>
             <v-card-text class="card-text">
-                <p>Hier siehst du alle Kurse in denen du dieses Semester eingetragen bist.</p>
-                <br />
+                <p>Hier findest du einen Überblick über alle deine Prüfungsergebnisse des aktuellen Semesters.</p>
             </v-card-text>
 
             <v-card-actions>
-                <v-btn to="/">ZU MEINEN KURSEN</v-btn>
+                <v-btn to="/">ZU MEINEN ERGEBNISSEN</v-btn>
             </v-card-actions>
         </v-card>
 
-
         <v-card class="card">
-            <v-card-title class="card-title">Feedback Abgeben</v-card-title>
+            <v-card-title class="card-title">Feedback hinterlassen</v-card-title>
             <v-card-subtitle class="card-subtitle"></v-card-subtitle>
-            <v-card-text class="card-text"> Hier bieten wir dir die Möglichkeit, Feedback zu hinterlassen, falls du auf
-                Probleme stößt oder Unterstützung benötigst.</v-card-text>
+            <v-card-text class="card-text">Hier hast du die Möglichkeit, Feedback zu geben, falls du auf Probleme stößt oder
+                Unterstützung benötigst.</v-card-text>
             <v-card-text class="text">
                 <v-text-field class="custom-textarea" v-model="feedback.text"></v-text-field>
             </v-card-text>
             <v-card-actions>
                 <v-spacer>
-                    <v-btn @click="sendFeedback">Abschicken</v-btn>
+                    <v-btn @click="sendFeedback">Absenden</v-btn>
                 </v-spacer>
             </v-card-actions>
         </v-card>
@@ -81,8 +78,6 @@ const sendFeedback = () => {
 
 </script>
 
-
-
 <style scoped lang="scss">
 .container {
   display: grid;
@@ -97,10 +92,8 @@ const sendFeedback = () => {
 }
 
 .card {
-  // fit to parent
   width: 100%;
   height: 100%;
-  // center content
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -110,16 +103,16 @@ const sendFeedback = () => {
   padding-bottom: 0;
 }
 
-// .custom-textarea {
-//   width: 100%;
-//   height: 50px;
-// }
-
 .card-subtitle {
   color: rgb(var(--v-theme-primary-dark));
+}
+
+.custom-textarea {
+  width: 100%;
 }
 
 .newscard_title {
   color: rgb(var(--v-theme-primary-dark));
 }
 </style>
+
