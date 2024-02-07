@@ -1,19 +1,23 @@
 <!-- eslint-disable vue/valid-v-slot -->
 <template>
   <div class="container">
-    <v-text-field v-model="search" label="Search" density="compact" prepend-icon="mdi-magnify" variant="underlined" hide-details class="search-bar"></v-text-field>
+    <v-text-field v-model="search" label="Search" density="compact" prepend-icon="mdi-magnify" variant="underlined"
+      hide-details class="search-bar"></v-text-field>
     <v-row>
       <v-checkbox v-model="checkboxActive" label="Nur aktive Kurse anzeigen" @change="filterCourseList"></v-checkbox>
-      <v-checkbox v-model="checkboxFriedberg" label="Friedberg" @change="filterCourseList" @click="checkboxGießen = false"></v-checkbox>
-      <v-checkbox v-model="checkboxGießen" label="Gießen" @change="filterCourseList" @click="checkboxFriedberg = false"></v-checkbox>
+      <v-checkbox v-model="checkboxFriedberg" label="Friedberg" @change="filterCourseList"
+        @click="checkboxGießen = false"></v-checkbox>
+      <v-checkbox v-model="checkboxGießen" label="Gießen" @change="filterCourseList"
+        @click="checkboxFriedberg = false"></v-checkbox>
       <v-checkbox v-model="checkboxParticipation" label="Teilnahme" @change="filterCourseList"></v-checkbox>
     </v-row>
-    <v-data-table :headers="headers" :items="displayedCourses" item-value="name" class="elevation-1" :search="search" density="default" height="480px" @click:row="openCourseOrSignUp">
-      <template #item.course.active="{ item }">
+    <v-data-table :headers="headers" :items="displayedCourses" item-value="name" class="elevation-1" :search="search"
+      density="default" height="480px" @click:row="openCourseOrSignUp">
+      <template #item.item.course="{ item }">
         <v-icon v-if="item.course.active == false" icon="mdi-close-circle" color="error"></v-icon>
         <v-icon v-if="item.course.active == true" icon="mdi-check-circle" color="success"></v-icon>
       </template>
-      <template #item.member="{ item }">
+      <template #item.item.member="{ item }">
         <v-icon v-if="item.member == true" icon="mdi-check-bold" color="success"></v-icon>
       </template>
     </v-data-table>
@@ -22,12 +26,15 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
-import { useAuthUserStore } from "c:/Users/Matthias/eWiLL_oral_examinator-1/modules/core/web/src/stores/authUserStore";
-import CourseAndParticipationPL from "c:/Users/Matthias/eWiLL_oral_examinator-1/modules/core/web/src/model/course/CourseAndParticipationPL";
-import courseService from "c:/Users/Matthias/eWiLL_oral_examinator-1/modules/core/web/src/services/course.service";
+import { useAuthUserStore } from "../../stores/authUserStore";
+import CourseAndParticipationPL from "@/model/course/CourseAndParticipationPL";
+import courseService from "../../services/course.service";
 
 
+
+const route = useRoute();
 const router = useRouter();
 const authUserStore = useAuthUserStore();
 
@@ -52,6 +59,7 @@ const checkboxParticipation = ref(false);
 
 const loadCourses = () => {
   let userId = authUserStore.auth.user?.id;
+  console.log(authUserStore);
   if (userId != undefined) {
     courseService
       .getAllCourses(userId)
@@ -77,11 +85,15 @@ const filterCourseList = () => {
 };
 
 
-
+// id abfangen
 const openCourseOrSignUp = (row: any, item: any) => {
-  if (item.member == false) router.push("/coursesDozent" + item.course.id + "/signup");
-  else router.push("/coursesDozent" + item.course.id);
+  console.log(item.item.value.course.id);
+  console.log(route.path);
+  if (item.member == false) router.push("/course/" + item.item.value.course.id + "/signup");
+  else router.push(route.path + "/" + item.item.value.course.id);
 }; 
+
+
 
 
 defineExpose({

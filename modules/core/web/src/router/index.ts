@@ -17,8 +17,11 @@ import ViewMembers from "../views/ViewMembers.vue";
 import ViewTaskSubmissions from "../views/ViewTaskSubmissions.vue";
 import ViewTestLogin from "@/views/oralExam/ViewTestLogin.vue";
 import ViewDashStudent from "@/views/oralExam/ViewDashStudent.vue";
-import ViewCoursesDozent from "@/views/oralExam/ViewCoursesDozent.vue";
 import ViewDashDozent from "@/views/oralExam/ViewDashDozent.vue";
+import ViewCoursesDozent from "@/views/oralExam/ViewCoursesDozent.vue";
+import ViewDozentCourse from "@/views/oralExam/ViewDozentCourse.vue";
+import ViewCreateExam from "@/views/oralExam/ViewCreateExam.vue";
+
 
 import authService from "@/services/auth.service";
 
@@ -106,6 +109,8 @@ const router = createRouter({
       component: ViewTaskSubmissions,
       
     },
+
+    //? ----------------- OralExam path's ------------------------
     {
       path: "/testLogin",
       name: "ViewTestLogin",
@@ -117,14 +122,19 @@ const router = createRouter({
       component: ViewDashStudent,
     },
     {
-      path: "/coursesDozent",
+      path: "/testLogin/dashDozent",
+      name: "ViewDashDozent",
+      component: ViewDashDozent,
+    },
+    {
+      path: "/testLogin/dashDozent/coursesDozent",
       name: "ViewCoursesDozent",
       component: ViewCoursesDozent,
     },
     {
-      path: "/testLogin/dashDozent",
-      name: "ViewDashDozent",
-      component: ViewDashDozent,
+      path: "/testLogin/dashDozent/coursesDozent/:createExamId",
+      name: "ViewCreateExam",
+      component: ViewCreateExam,
     },
   ],
 });
@@ -155,7 +165,8 @@ router.beforeEach(async (to, from, next) => {
     "DialogCreateCourse",   // später entfernen eingefügt nur zu Testzwecken, da wir nur Studenten-Accounts haben
     "ViewDashDozent",       // später entfernen eingefügt nur zu Testzwecken, da wir nur Studenten-Accounts haben
     "ViewBugReport",
-    "ViewBugOverview",     // später entfernen eingefügt nur zu Testzwecken, da wir nur Studenten-Accounts haben
+    "ViewBugOverview",
+    "CoursesListDozent",     // später entfernen eingefügt nur zu Testzwecken, da wir nur Studenten-Accounts haben
   ];
   const adminRequired = !nonAdminPages.includes(to.name as string);
   const role = localStorage.getItem("role");

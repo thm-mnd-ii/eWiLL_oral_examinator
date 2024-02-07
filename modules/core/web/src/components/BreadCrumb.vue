@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { ref } from "vue";
+import { ref, defineProps } from "vue";
 
 import courseService from "../services/course.service";
 import taskService from "../services/task.service";
@@ -50,6 +50,8 @@ const wordReplacement = (word: string) => {
       return "Dashboard";
     case "dashDozent":
       return "Dashboard";
+    case "coursesDozent":
+      return "Kurse";
     default:
       return word;
   }
@@ -70,10 +72,8 @@ const calculateBreadCrumb = async () => {
     const title = wordReplacement(item);
 
     let link = "/";
-    if (i === 0) {
-      // Add hash only for the first item in the path
-      link += "#/";
-    }
+    // Add hash for all items in the path
+    link += "#/";
 
     // Append the current segment to the link
     link += path.slice(0, i + 1).join("/");
@@ -112,8 +112,6 @@ const calculateBreadCrumb = async () => {
     }
   }
 };
-
-// breadcrumb items
 </script>
 
 <style scoped lang="scss">
