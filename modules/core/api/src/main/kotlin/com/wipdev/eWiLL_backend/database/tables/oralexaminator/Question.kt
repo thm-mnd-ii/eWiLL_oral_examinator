@@ -16,12 +16,14 @@ data class Question(
     @Column(name = "link", nullable = true)
     var link: String? = null,
 
-    @Column(name = "course_id", nullable = true)
-    var course_id: Long? = null,
-
     @Enumerated(EnumType.STRING)
     @Column(name = "course_id", nullable = true)
     var course_id: Course? = Course.Id,
+
+    @Column(name = "solution", nullable = false)
+    var solution: CharArray? = null,
+
+
     
 ) {
     override fun equals(other: Any?): Boolean {
@@ -38,6 +40,6 @@ data class Question(
     }
 
     override fun toString(): String {
-        return "Course(id=$id, text=$text, link=$link, course_id=$course_id)"
+        return "Question(id=$id, text=$text, link=$link, course_id=$course_id, solution=$solution)"
     }
 }
