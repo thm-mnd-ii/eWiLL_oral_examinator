@@ -12,7 +12,7 @@ class CourseService {
  getAllCourses(userId: number): Promise<CourseAndParticipationPL[]> {
   return new Promise<CourseAndParticipationPL[]>((resolve, reject) => {
     axios
-      .get(`/api/course/all/${userId}`) // Annahme: Die API unterstützt die Filterung nach dem Ersteller
+      .get(`/api/course/all/${userId}`) 
       .then((response) => {
         const courses: CourseAndParticipationPL[] = response.data;
         resolve(courses);
@@ -24,7 +24,6 @@ class CourseService {
       });
   });
 }
-
 
   postCourse(course: CoursePL) {
     course.id = 0;
