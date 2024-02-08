@@ -72,7 +72,7 @@ const openCourseOrSignUp = (row: any, item: any) => {
 
   else if(roleId === "ROLE_ADMIN")router.push(route.path + "/" + item.item.value.course.id);
 
-  else console.log("start");
+  else router.push(route.path + '/' + item.item.value.course.id);
 }; 
 
 

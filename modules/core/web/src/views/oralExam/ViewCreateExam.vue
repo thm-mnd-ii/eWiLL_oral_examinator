@@ -3,7 +3,7 @@
     <div class="course">
       <v-card>
         <v-card-title class="align-items-center">
-          <h3 class="headline mb-0">{{ course?.name }}!</h3>
+          <h3 class="headline mb-0">{{ course?.name }}</h3>
 
           <v-spacer></v-spacer>
 
@@ -37,12 +37,12 @@
 
       <!-- Karte für Fragenkatalog erstellen -->
       <v-card class="card" @click="navigateToCreateQuestionnaire">
-        <v-card-title class="title">Fragenkatalog erstellen</v-card-title>
+        <v-card-title class="title">Fragenkatalog verwalten</v-card-title>
         <v-card-text class="text">
           Hier können Sie einen neuen Fragenkatalog erstellen, um Prüfungen vorzubereiten.
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" @click="navigateToCreateQuestionnaire">Erstellen</v-btn>
+          <v-btn color="primary" @click="navigateToCreateQuestionnaire">verwalten</v-btn>
         </v-card-actions>
       </v-card>
 
@@ -57,6 +57,7 @@
         </v-card-actions>
       </v-card>
     </div>
+    <DialogCreateCourse ref="dialogCreateCourse"></DialogCreateCourse>
   </BasicBackground>
 </template>
 
@@ -92,7 +93,7 @@ const dialogCreateTask = ref<typeof DialogEditTask>();
 
 onMounted(() => {
   courseService.getUserRoleInCourse(userId.value!, courseId.value).then((response) => {
-    console.log( "test")
+    console.log( "test");
     if (response == "NONE") {
       router.push(route.path + "/signup");
     } else {
@@ -125,8 +126,6 @@ const leaveCourse = () => {
 };
 
 const editCourse = () => {
-  console.log(route.params.createExamId);
-  console.log("test");
   if (dialogCreateCourse.value) {
     dialogCreateCourse.value.openDialog(courseId.value).then(() => {
       courseService.getCourse(courseId.value).then((response) => {
@@ -147,7 +146,8 @@ const navigateToCreateQuestionnaire = () => {
 };
 
 const navigateToViewResults = () => {
-  router.push('/view-results');
+  // router.push('/view-results');
+  console.log(route.params);
 };
 </script>
 
@@ -157,7 +157,7 @@ const navigateToViewResults = () => {
   margin: 20px 20px;
   display: flex;
   flex-direction: column;
-  margin-top: -250px;
+  margin-top: -200px;
 
 }
 

@@ -52,6 +52,8 @@ const wordReplacement = (word: string) => {
       return "Dashboard";
     case "coursesDozent":
       return "Prüfungen";
+    case "examListStudent":
+      return "Prüfungen";
     default:
       return word;
   }
