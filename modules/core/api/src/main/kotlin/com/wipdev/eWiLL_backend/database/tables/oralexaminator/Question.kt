@@ -1,5 +1,5 @@
 package com.wipdev.eWiLL_backend.database.tables.oralexaminator
-import com.wipdev.eWiLL_backend.database.tables.course.Course
+
 import javax.persistence.*
 
 @Entity
@@ -10,15 +10,15 @@ data class Question(
     @Column(name = "id", nullable = false)
     var id: Long? = null,
 
-    @Column(name = "text", nullable = false)
+    @Column(name = "text", nullable = true)
     var text: String? = null,
 
     @Column(name = "link", nullable = true)
     var link: String? = null,
 
-    @Enumerated(EnumType.STRING)
+
     @Column(name = "course_id", nullable = true)
-    var course_id: Course? = Course.Id,
+    var course_id: Long? = null,
 
     @Column(name = "solution", nullable = false)
     var solution: CharArray? = null,

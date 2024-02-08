@@ -36,13 +36,13 @@
       <br />
 
       <!-- Karte für Fragenkatalog erstellen -->
-      <v-card class="card" @click="navigateToCreateQuestionnaire">
+      <v-card class="card" @click="openCreateQuestionDialog">
         <v-card-title class="title">Fragenkatalog erstellen</v-card-title>
         <v-card-text class="text">
           Hier können Sie einen neuen Fragenkatalog erstellen, um Prüfungen vorzubereiten.
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" @click="navigateToCreateQuestionnaire">Erstellen</v-btn>
+          <v-btn color="primary" @click="openCreateQuestionDialog">Erstellen</v-btn>
         </v-card-actions>
       </v-card>
       <ViewCreateQuestion ref="dialogCreateQuestion"></ViewCreateQuestion>

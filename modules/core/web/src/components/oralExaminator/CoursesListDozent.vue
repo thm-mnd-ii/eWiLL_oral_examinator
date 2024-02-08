@@ -68,9 +68,9 @@ const loadCourses = () => {
 const openCourseOrSignUp = (row: any, item: any) => {
   let roleId = authUserStore.auth.user?.roles[0]; // Greife auf den ersten Eintrag im Array zu
   console.log(roleId); // Gibt 'ROLE_ADMIN' aus
-  if (item.member == false) router.push(route.path +'/' + item.item.value.course.id+ "/signup");
+  if (item.member == false) router.push(route.path +'/' + item.item.course.id+ "/signup");
 
-  else if(roleId === "ROLE_ADMIN")router.push(route.path + "/" + item.item.value.course.id);
+  else if(roleId === "ROLE_ADMIN")router.push(route.path + "/" + item.item.course.id);
 
   else router.push(route.path + '/' + item.item.value.course.id);
 }; 

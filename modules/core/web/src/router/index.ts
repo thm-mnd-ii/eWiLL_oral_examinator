@@ -22,6 +22,7 @@ import ViewCoursesDozent from "@/views/oralExam/ViewCoursesDozent.vue";
 import ViewCreateExam from "@/views/oralExam/ViewCreateExam.vue";
 import ViewCoursesStudent from "@/views/oralExam/ViewCoursesStudent.vue";
 import ViewCreateQuestion from "@/views/oralExam/ViewCreateQuestion.vue";
+import ViewExamStart from "@/views/oralExam/ViewExamStart.vue";
 
 
 import authService from "@/services/auth.service";
