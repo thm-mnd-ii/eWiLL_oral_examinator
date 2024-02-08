@@ -37,14 +37,15 @@
 
       <!-- Karte für Fragenkatalog erstellen -->
       <v-card class="card" @click="navigateToCreateQuestionnaire">
-        <v-card-title class="title">Fragenkatalog verwalten</v-card-title>
+        <v-card-title class="title">Fragenkatalog erstellen</v-card-title>
         <v-card-text class="text">
           Hier können Sie einen neuen Fragenkatalog erstellen, um Prüfungen vorzubereiten.
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" @click="navigateToCreateQuestionnaire">verwalten</v-btn>
+          <v-btn color="primary" @click="navigateToCreateQuestionnaire">Erstellen</v-btn>
         </v-card-actions>
       </v-card>
+      <ViewCreateQuestion ref="dialogCreateQuestion"></ViewCreateQuestion>
 
       <!-- Karte für Prüfungsergebnisse einsehen -->
       <v-card class="card" @click="navigateToViewResults">
@@ -62,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useAuthUserStore } from "../../stores/authUserStore";
 import { useRouter } from "vue-router";
@@ -75,6 +76,8 @@ import DialogConfirmVue from "../../dialog/DialogConfirm.vue";
 import DialogCreateCourse from "@/dialog/DialogCreateCourse.vue";
 import DialogEditTask from "@/dialog/DialogEditTask.vue";
 import BasicBackground from "@/components/BasicBackground.vue";
+import ViewCreateQuestion from "../oralExam/ViewCreateQuestion.vue";
+
 
 const route = useRoute();
 const router = useRouter();
@@ -90,6 +93,10 @@ const courseRole = ref("");
 const dialogConfirm = ref<typeof DialogConfirmVue>();
 const dialogCreateCourse = ref<typeof DialogCreateCourse>();
 const dialogCreateTask = ref<typeof DialogEditTask>();
+const dialogCreateQuestion = ref<typeof ViewCreateQuestion>();
+
+
+
 
 onMounted(() => {
   courseService.getUserRoleInCourse(userId.value!, courseId.value).then((response) => {
@@ -142,13 +149,30 @@ const openMembersView = () => {
 
 // Funktionen zur Navigation zu den entsprechenden Seiten
 const navigateToCreateQuestionnaire = () => {
-  router.push('/create-questionnaire');
+  console.log(route.path)
+  router.push(route.path + '/createQuestion');
 };
 
 const navigateToViewResults = () => {
-  // router.push('/view-results');
-  console.log(route.params);
+  router.push('/view-results');
 };
+
+  const openCreateQuestionDialog = () => {
+    console.log(route.path);
+    console.log(dialogCreateQuestion);
+    if (dialogCreateQuestion.value) {
+      dialogCreateQuestion.value.openDialog().then((id: number | undefined) => {
+        if (id !== undefined) {
+          router.push(`${route.path}/${id}`);
+        }
+      });
+      }
+  };
+
+
+
+
+
 </script>
 
 <style scoped>

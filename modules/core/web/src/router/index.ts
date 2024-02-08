@@ -21,7 +21,7 @@ import ViewDashDozent from "@/views/oralExam/ViewDashDozent.vue";
 import ViewCoursesDozent from "@/views/oralExam/ViewCoursesDozent.vue";
 import ViewCreateExam from "@/views/oralExam/ViewCreateExam.vue";
 import ViewCoursesStudent from "@/views/oralExam/ViewCoursesStudent.vue";
-import ViewExamStart from "@/views/oralExam/ViewExamStart.vue";
+import ViewCreateQuestion from "@/views/oralExam/ViewCreateQuestion.vue";
 
 
 import authService from "@/services/auth.service";
@@ -137,6 +137,14 @@ const router = createRouter({
       name: "ViewCoursesStudent",
       component: ViewCoursesStudent,
     },
+
+
+    {
+      path: "/testLogin/dashDozent/coursesDozent/:createExamId/createQuestion",
+      /*path: '/create-questionnaire' ,*/
+      name: "ViewCreateCourse",
+      component: ViewCreateQuestion,
+    },
     {
       path: "/testLogin/dashDozent/coursesDozent/:createExamId",
       name: "ViewCreateExam",
@@ -148,6 +156,10 @@ const router = createRouter({
     component: ViewExamStart,
     },
 
+
+  
+
+    
   ],
 });
 
