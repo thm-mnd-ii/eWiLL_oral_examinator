@@ -1,6 +1,7 @@
 {
   "name": "ewill-frontend",
   "version": "0.0.0",
+  "proxy": "http://localhost:8080/",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",

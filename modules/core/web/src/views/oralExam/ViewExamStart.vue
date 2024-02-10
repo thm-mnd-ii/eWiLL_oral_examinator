@@ -12,7 +12,7 @@
           <p>{{ course?.description }}</p> <!-- Hier wird die Beschreibung des Kurses angezeigt -->
         </v-card-text>
         <v-card-actions class="card-action">
-          <v-btn color="primary" @click="startOralExaminator" class="start-btn">STARTEN</v-btn>
+          <v-btn class="start-btn" color="primary" @click="startOralExaminator">STARTEN</v-btn>
         </v-card-actions>
       </v-card>
     </div>
@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { useRoute } from "vue-router";
 import { useAuthUserStore } from "../../stores/authUserStore";
 import { useRouter } from "vue-router";
@@ -37,11 +37,12 @@ const authUserStore = useAuthUserStore();
 
 const course = ref<CoursePL>();
 const courseId = ref(Number(route.params.examId));
-const userId = ref(authUserStore.auth.user?.id);
+let userId = authUserStore.auth.user?.id;
 
 
 const startOralExaminator = () => {
-    console.log(route.params.examId);   
+    console.log("test");
+    router.push(route.path +'/'+ userId);
     };
 
  onMounted(() => {

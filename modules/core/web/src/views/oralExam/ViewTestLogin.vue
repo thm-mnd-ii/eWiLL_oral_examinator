@@ -63,7 +63,7 @@ const redirectToDozent = () => {
   align-items: center;
   justify-items: stretch;
 }
-</style>
+</style> 
 
 
 
@@ -252,3 +252,4 @@ export default {
   },
 };
 </script> -->
+

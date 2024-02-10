@@ -1,41 +1,40 @@
 <template>
-    <v-dialog v-model="questionDialog" width="70%">
-      <v-card>
-        <v-card-title>
-          <span v-if="newQuestion">Neue Frage erstellen</span>
-          <span v-if="!newQuestion">Frage bearbeiten: {{ question.text }}</span>
-        </v-card-title>
-        <v-form ref="form" v-model="valid" @submit.prevent>
-          <v-card-text>
-            <v-row>
-              <v-col>
-                <v-text-field 
-                v-model="question.text" color="primary" variant="underlined" label="Text"
-                  :rules="[(v: any) => !!v || 'Item is required']" required></v-text-field>
-                <v-text-field 
-                v-model="question.link" color="primary" variant="underlined" label="Link"></v-text-field>
-                <v-select 
-                v-model="question.course_id" color="primary" variant="underlined" label="Kurs"
-                  :items="courses" item-text="name" item-value="id" ></v-select>
-                <v-text-field v-model="solutionInput" color="primary" variant="underlined" label="Lösung" hint="Mehrere Lösungen durch Kommas trennen"></v-text-field>
-              </v-col>
-            </v-row>
-          </v-card-text>
-          <v-card-actions class="card-actions">
-            <v-btn v-if="!newQuestion" color="error" variant="flat" @click="deleteQuestion">Frage löschen</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn color="error" variant="flat" @click="_cancel">Abbrechen</v-btn>
-            <v-btn v-show="!loading" color="primary" variant="flat" type="submit" @click="_confirm">Speichern</v-btn>
-            <v-progress-circular v-if="loading" color="primary" indeterminate size="40"></v-progress-circular>
-          </v-card-actions>
-        </v-form>
-      </v-card>
-      <v-snackbar v-model="snackbarFail" :timeout="2500">Fehler beim Speichern der Frage, bitte versuchen Sie es erneut</v-snackbar>
-    </v-dialog>
-    <DialogConfirmVue ref="dialogConfirm"></DialogConfirmVue>
-  </template>
+  <v-dialog v-model="questionDialog" width="70%">
+    <v-card>
+      <v-card-title>
+        <span v-if="newQuestion">Neue Frage erstellen</span>
+        <span v-if="!newQuestion">Frage bearbeiten: {{ question.text }}</span>
+      </v-card-title>
+      <v-form ref="form" v-model="valid" @submit.prevent>
+        <v-card-text>
+          <v-row>
+            <v-col>
+              <v-text-field v-model="question.text" color="primary" variant="underlined" label="Text"
+                :rules="[(v: any) => !!v || 'Item is required']" required></v-text-field>
+              <v-text-field v-model="question.link" color="primary" variant="underlined" label="Link"></v-text-field>
+              <v-select v-model="question.course_id" color="primary" variant="underlined" label="Kurs" :items="courses"
+                item-text="name" item-value="id"></v-select>
+              <v-text-field v-model="solutionInput" color="primary" variant="underlined" label="Lösung"
+                hint="Mehrere Lösungen durch Kommas trennen"></v-text-field>
+            </v-col>
+          </v-row>
+        </v-card-text>
+        <v-card-actions class="card-actions">
+          <v-btn v-if="!newQuestion" color="error" variant="flat" @click="deleteQuestion">Frage löschen</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn color="error" variant="flat" @click="_cancel">Abbrechen</v-btn>
+          <v-btn v-show="!loading" color="primary" variant="flat" type="submit" @click="_confirm">Speichern</v-btn>
+          <v-progress-circular v-if="loading" color="primary" indeterminate size="40"></v-progress-circular>
+        </v-card-actions>
+      </v-form>
+    </v-card>
+    <v-snackbar v-model="snackbarFail" :timeout="2500">Fehler beim Speichern der Frage, bitte versuchen Sie es
+      erneut</v-snackbar>
+  </v-dialog>
+  <DialogConfirmVue ref="dialogConfirm"></DialogConfirmVue>
+</template>
   
-  <script setup lang="ts">
+<script setup lang="ts">
   import { watch, ref } from "vue";
   import questionService from "../../services/question.service";
   import Question from "../../model/oral_examinator/Question";
@@ -175,8 +174,8 @@
   
   </script>
   
-  <style scoped>
-  .card-actions {
-    padding: 1rem;
-  }
-  </style>
+<style scoped>
+.card-actions {
+  padding: 1rem;
+}
+</style>

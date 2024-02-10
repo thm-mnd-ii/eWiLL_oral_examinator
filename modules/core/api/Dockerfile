@@ -18,7 +18,7 @@ RUN mvn -f /build/modules/core/api/pom.xml clean package -DskipTests
 #
 # Run Spring Boot app as jar
 #
-FROM openjdk:17-alpine
+FROM openjdk:17-oracle
 COPY --from=build /build/modules/core/api/target/api.jar /usr/local/api.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/local/api.jar"]

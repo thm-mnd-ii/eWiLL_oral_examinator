@@ -23,6 +23,7 @@ import ViewCreateExam from "@/views/oralExam/ViewCreateExam.vue";
 import ViewCoursesStudent from "@/views/oralExam/ViewCoursesStudent.vue";
 import ViewCreateQuestion from "@/views/oralExam/ViewCreateQuestion.vue";
 import ViewExamStart from "@/views/oralExam/ViewExamStart.vue";
+import ViewOralExam from "@/views/oralExam/ViewOralExam.vue";
 
 
 import authService from "@/services/auth.service";
@@ -156,6 +157,11 @@ const router = createRouter({
     name: "ViewExamStart",
     component: ViewExamStart,
     },
+     {
+    path: "/testLogin/dashStudent/examListStudent/:examId/:userId",
+    name: "ViewOralExam",
+    component: ViewOralExam,
+    },
 
 
   
@@ -184,16 +190,18 @@ router.beforeEach(async (to, from, next) => {
     "FeedbackReport",
     "ViewMembers",
     "ViewTaskSubmissions",
+    //? --------------------------- OralExam Views ------------------------------
     "ViewTestLogin",
     "ViewDashStudent",
     "ViewCoursesDozent",
-    "ViewCoursesStudent",   // später entfernen eingefügt nur zu Testzwecken, da wir nur Studenten-Accounts haben
-    "DialogCreateCourse",   // später entfernen eingefügt nur zu Testzwecken, da wir nur Studenten-Accounts haben
-    "ViewDashDozent",       // später entfernen eingefügt nur zu Testzwecken, da wir nur Studenten-Accounts haben
+    "ViewCoursesStudent",   
+    "DialogCreateCourse",   
+    "ViewDashDozent",       
     "ViewBugReport",
     "ViewBugOverview",
     "CoursesListDozent",
-    "ViewExamStart"  
+    "ViewExamStart",  
+    "ViewOralExam"
   ];
   const adminRequired = !nonAdminPages.includes(to.name as string);
   const role = localStorage.getItem("role");
