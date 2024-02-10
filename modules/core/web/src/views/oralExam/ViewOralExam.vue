@@ -34,7 +34,8 @@
       </div>
     </div>
   </div>
-  <DialogEndOfExam :punkteAnzahl="punkteAnzahl" :gesamtFragen="gesamtFragen" v-if=" this.showResult" />
+  <DialogEndOfExam :punkteAnzahl="punkteAnzahl" :gesamtFragen="gesamtFragen" :schwierigkeit="schwierigkeit"
+    v-if=" this.showResult" />
 </template>
 
 <script>

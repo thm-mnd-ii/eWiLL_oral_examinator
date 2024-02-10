@@ -2,7 +2,7 @@ export const Fragenkatalog = {
     // Methode für Stufe 1
     dataStufe1() {
         return {
-            schwierigkeit: '',
+            schwierigkeit: 'Leicht',
             startTime: null,
             currentTime: null,
             duration: 600, // 10 Minuten in Sekunden
@@ -93,7 +93,7 @@ export const Fragenkatalog = {
     // Methode für Stufe 2
     dataStufe2() {
         return {
-            schwierigkeit: '',
+            schwierigkeit: 'Mittel',
             startTime: null,
             currentTime: null,
             duration: 600, // 10 Minuten in Sekunden
@@ -180,13 +180,16 @@ export const Fragenkatalog = {
                 { frageId: 33, loesungen: ["Schlüssel", "Verwaltung", "Performance", "Compliance"] },
                 { frageId: 34, loesungen: ["Rechtliche", "Vorschrift", "Daten", "Schutz", "international", "Standards"] },
             ],
-            showResult: false
+            showResult: false,
+            ergebnisse: [
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Leicht" }
+            ]
         };
     },
     // Methode für Stufe 3
     dataStufe3() {
         return {
-            schwierigkeit: '',
+            schwierigkeit: 'Schwer',
             startTime: null,
             currentTime: null,
             duration: 600, // 10 Minuten in Sekunden
@@ -270,7 +273,10 @@ export const Fragenkatalog = {
                 { frageId: 31, loesungen: ["Benutzerdefinierte", "Erweiterungen", "SQL", "Spezifisch", "Geschäfts", "Logiken", "Anpassung", "Effizienz", "Steigerung"] },
                 { frageId: 32, loesungen: ["Verschiedene", "Daten", "Typen", "Flexible", "Abfragen", "Komplex", "Modelle"] },
             ],
-            showResult: false
+            showResult: false,
+            ergebnisse: [
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Schwer" }
+            ]
         };
     }
 };

@@ -24,12 +24,11 @@ export default {
     props: {
         punkteAnzahl: Number,
         gesamtFragen: Number,
-        stufe: String
+        schwierigkeit: String
     },
     data() {
         return {
             showResult: true,
-            difficulty: 'Schwer',
             date: new Date(),
 
         }
@@ -48,7 +47,7 @@ export default {
         },
 
         giveStufe() {
-            return this.stufe;
+            return this.schwierigkeit;
         }
 
     },
