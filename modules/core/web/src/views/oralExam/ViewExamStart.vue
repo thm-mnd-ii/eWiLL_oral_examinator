@@ -22,7 +22,6 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { AxiosResponse } from "axios";
 import { useRoute } from "vue-router";
 import { useAuthUserStore } from "../../stores/authUserStore";
 import { useRouter } from "vue-router";
@@ -39,11 +38,9 @@ const course = ref<CoursePL>();
 const courseId = ref(Number(route.params.examId));
 let userId = authUserStore.auth.user?.id;
 
-
 const startOralExaminator = () => {
-    console.log("test");
-    router.push(route.path +'/'+ userId);
-    };
+    router.push(route.path + '/' + course.value?.description);
+};
 
  onMounted(() => {
     fetchCourseData(); // Hier wird die Methode beim Komponentenmount aufgerufen

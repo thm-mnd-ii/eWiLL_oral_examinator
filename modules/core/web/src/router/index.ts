@@ -140,10 +140,8 @@ const router = createRouter({
       component: ViewCoursesStudent,
     },
 
-
     {
       path: "/testLogin/dashDozent/coursesDozent/:createExamId/createQuestion",
-      /*path: '/create-questionnaire' ,*/
       name: "ViewCreateCourse",
       component: ViewCreateQuestion,
     },
@@ -158,15 +156,10 @@ const router = createRouter({
     component: ViewExamStart,
     },
      {
-    path: "/testLogin/dashStudent/examListStudent/:examId/:userId",
+    path: "/testLogin/dashStudent/examListStudent/:examId/:stufe",
     name: "ViewOralExam",
     component: ViewOralExam,
     },
-
-
-  
-
-    
   ],
 });
 

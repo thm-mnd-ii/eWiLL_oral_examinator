@@ -47,13 +47,15 @@ const wordReplacement = (word: string) => {
     case "testLogin":
       return "Login";
     case "dashStudent":
-      return "Dashboard";
+      return "Studenten Dashboard";
     case "dashDozent":
-      return "Dashboard";
+      return "Dozenten Dashboard";
     case "coursesDozent":
       return "Prüfungen";
     case "examListStudent":
       return "Prüfungen";
+    case ("44" || "46" || "52"): // Id's der Prüfungen
+      return "Prüfung Starten";
     default:
       return word;
   }
