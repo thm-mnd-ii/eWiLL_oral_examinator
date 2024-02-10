@@ -38,12 +38,12 @@ export default {
             return this.date.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
         },
         correctAnswers() {
-            return (this.punkteAnzahl + "/" + this.gesamteFragen)
+            return (this.punkteAnzahl + "/" + this.gesamtFragen)
         },
 
         passed() {
 
-            return this.punkteAnzahl >= this.gesamteFragen / 2;
+            return this.punkteAnzahl >= this.gesamtFragen / 2;
         },
 
         giveStufe() {
