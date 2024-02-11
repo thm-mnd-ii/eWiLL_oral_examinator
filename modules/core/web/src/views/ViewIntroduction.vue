@@ -9,8 +9,8 @@
       <v-card-text class="text"> Herzlich willkommen auf Oral Examinator, deiner Plattform für simulierte mündliche Prüfungen im Fach Datenmanagement. Wir bieten dir eine einzigartige Möglichkeit, dein Wissen zu testen und deine mündlichen Präsentationsfähigkeiten zu schärfen. </v-card-text>
       <v-card-actions>
         <v-spacer>
-          <v-btn v-if="isAdmin" variant="flat" color="primary-dark" to="/testLogin/dashDozent"> Hier geht's zu deinem Dashboard </v-btn>
-          <v-btn v-if="isUser" variant="flat" color="primary-dark" to="/testLogin/dashStudent"> Hier geht's zu deinem Dashboard </v-btn>
+          <v-btn v-if="isAdmin" variant="flat" color="primary-dark" to="/dashDozent"> Hier geht's zu deinem Dashboard </v-btn>
+          <v-btn v-if="isUser" variant="flat" color="primary-dark" to="/dashStudent"> Hier geht's zu deinem Dashboard </v-btn>
         </v-spacer>
       </v-card-actions>
     </v-card>
