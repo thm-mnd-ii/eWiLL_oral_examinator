@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/valid-v-slot -->
 <template>
   <div class="container">
-    <CoursesListDozent ref="coursesListDozent"></CoursesListDozent>
+    <CoursesListStudent ref="coursesListStudent"></CoursesListStudent>
   </div>
   <DialogCreateCourse ref="dialogCreateCourse"></DialogCreateCourse>
 </template>
@@ -10,7 +10,7 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import DialogCreateCourse from "../../dialog/DialogCreateCourse.vue";
-import CoursesListDozent from "../../components/oralExaminator/CoursesListDozent.vue";
+import CoursesListStudent from "../../components/oralExaminator/CoursesListStudent.vue";
 import { useAuthUserStore } from "../../stores/authUserStore";
 import GlobalRoles from "../../enums/GlobalRoles";
 
@@ -18,25 +18,19 @@ const authUserStore = useAuthUserStore();
 const router = useRouter();
 
 const dialogCreateCourse = ref<typeof DialogCreateCourse>();
-const coursesListDozent = ref<typeof CoursesListDozent>();
+const coursesListStudent = ref<typeof CoursesListStudent>();
 
 const isAdmin = ref(false);
 const isUser = ref();
 
 onMounted(() => {
-  coursesListDozent.value?.loadCourses();
+  coursesListStudent.value?.loadCourses();
 
   isAdmin.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_ADMIN)!;
   isUser.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_USER);
 });
 
-const createCourse = () => {
-  if (dialogCreateCourse.value) {
-    dialogCreateCourse.value.openDialog().then((id: number) => {
-      if (id != undefined) router.push("/coursesDozent/" + id);
-    });
-  }
-};
+
 </script>
 
 <style scoped lang="scss">
