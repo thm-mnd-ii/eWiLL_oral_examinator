@@ -24,18 +24,16 @@ class QuestionService {
         questionRepository.deleteById(id)
     }
 
-    fun findById(id: Long): Question? {
-        return questionRepository.findById(id).orElse(null)
+    fun findById(id: Long): Question {
+        return questionRepository.findById(id).get()
     }
 
     fun update(id: Long, questionPL: QuestionPL) {
         val question = findById(id)
-        question?.let {
-            it.text = questionPL.text
-            it.link = questionPL.link
-            it.course_id = questionPL.course_id
-            it.solution = questionPL.solution
-            questionRepository.save(it)
-        }
+        question.questionText = questionPL.questionText
+        question.link = questionPL.link
+        question.solutions = questionPL.solutions
+        questionRepository.save(question)
+
     }
 }
