@@ -8,8 +8,6 @@
                 <div>
                     <p>Ergebnis: <span :class="{ 'result-status': true, 'passed': passed, 'not-passed': !passed }">{{ passed ? 'Bestanden' : 'Nicht Bestanden' }}</span></p>
                     <p>User: {{ getUserId }}</p>
-                    <p>Bestanden/Nicht Bestanden: <span class="result-status">{{ passed ? 'Bestanden' : 'Nicht Bestanden'
-                            }}</span></p>
                     <p>Richtig beantwortete Fragen: {{ correctAnswers }}</p>
                     <p>Schwierigkeit: {{ giveStufe }}</p>
                     <p>Datum: {{ formattedDate }}</p>
