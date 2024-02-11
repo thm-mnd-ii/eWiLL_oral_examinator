@@ -54,8 +54,8 @@ const wordReplacement = (word: string) => {
       return "Prüfungen";
     case "examListStudent":
       return "Prüfungen";
-    case ("44" || "46" || "52"): // Id's der Prüfungen
-      return "Prüfung Starten";
+    case "view-results":
+      return "Ergebnisse anzeigen";
     default:
       return word;
   }

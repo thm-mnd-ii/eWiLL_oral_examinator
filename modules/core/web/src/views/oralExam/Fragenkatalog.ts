@@ -1,5 +1,11 @@
+// import ergebnisseArray from "../dialog/oralExaminator/DialogEndOfExam.vue";
+
 export const Fragenkatalog = {
-    // Methode für Stufe 1
+    
+    // setErgniss() {
+    //     console.log(ergebnisseArray);
+    // },
+
     dataStufe1() {
         return {
             schwierigkeit: 'Leicht',
@@ -87,7 +93,13 @@ export const Fragenkatalog = {
                 { frageId: 32, loesungen: ["Daten", "Zugriff", "Daten", "Sicherheit", "mobil", "Anwendung"] },
                 { frageId: 33, loesungen: ["Weiterbildung", "Workshops", "Online", "Kurse"] },
             ],
-            showResult: false
+            showResult: false,
+            ergebnisse: [
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Leicht" , feedback: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" },
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Leicht" , feedback: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" },
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Leicht" , feedback: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" },
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Leicht" , feedback: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" },
+            ]
         };
     },
     // Methode für Stufe 2
@@ -182,7 +194,7 @@ export const Fragenkatalog = {
             ],
             showResult: false,
             ergebnisse: [
-                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Leicht" }
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Mittel", feedback: "war okey" }
             ]
         };
     },
@@ -275,7 +287,7 @@ export const Fragenkatalog = {
             ],
             showResult: false,
             ergebnisse: [
-                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Schwer" }
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Schwer", feedback: "war okey" }
             ]
         };
     }

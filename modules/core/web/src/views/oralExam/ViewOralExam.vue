@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { Fragenkatalog } from "./Fragenkatalog.js";
+import { Fragenkatalog } from "./Fragenkatalog.ts";
 import { useAuthUserStore } from "../../stores/authUserStore";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
