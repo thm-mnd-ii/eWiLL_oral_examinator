@@ -23,6 +23,8 @@ import ViewCoursesStudent from "@/views/oralExam/ViewCoursesStudent.vue";
 import ViewCreateQuestion from "@/views/oralExam/ViewCreateQuestion.vue";
 import ViewExamStart from "@/views/oralExam/ViewExamStart.vue";
 import ViewOralExam from "@/views/oralExam/ViewOralExam.vue";
+import ViewCourseSignUpDozent from "@/views/oralExam/ViewCourseSignUpDozent.vue";
+import ViewCourseSignUpStudent from "@/views/oralExam/ViewCourseSignUpStudent.vue";
 import ViewDozentResults from "@/views/oralExam/ViewDozentResults.vue";
 
 
@@ -160,6 +162,17 @@ const router = createRouter({
     path: "/dashStudent/examListStudent/:examId/:stufe",
     name: "ViewOralExam",
     component: ViewOralExam,
+    },
+    {
+      path: "/testLogin/dashStudent/examListStudent/:id/signupStudent",
+      name: "ViewCourseSignUpStudent",
+      component: ViewCourseSignUpStudent,
+    },
+
+    {
+      path: "/testLogin/dashDozent/coursesDozent/:id/signupDozent",
+      name: "ViewCourseSignupDozent",
+      component: ViewCourseSignUpDozent,
     },
   ],
 });

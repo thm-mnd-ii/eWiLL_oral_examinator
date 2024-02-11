@@ -51,9 +51,11 @@ export default {
         },
         correctAnswers() {
             return (this.punkteAnzahl + "/" + this.gesamtFragen)
+            return (this.punkteAnzahl + "/" + this.gesamtFragen)
         },
 
         passed() {
+
             return this.punkteAnzahl >= this.gesamtFragen / 2;
         },
 
