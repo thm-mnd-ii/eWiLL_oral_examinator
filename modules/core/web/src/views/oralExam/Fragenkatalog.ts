@@ -110,7 +110,7 @@ export const Fragenkatalog = {
             schwierigkeit: 'Mittel',
             startTime: null,
             currentTime: null,
-            duration: 600, // 10 Minuten in Sekunden
+            duration: 900, // 15 Minuten in Sekunden
             timerInterval: null,
             recognition: null,
             isRecording: false, // Zustand der Aufnahme
@@ -207,7 +207,7 @@ export const Fragenkatalog = {
             schwierigkeit: 'Schwer',
             startTime: null,
             currentTime: null,
-            duration: 600, // 10 Minuten in Sekunden
+            duration: 1200, // 20 Minuten in Sekunden
             timerInterval: null,
             recognition: null,
             isRecording: false, // Zustand der Aufnahme

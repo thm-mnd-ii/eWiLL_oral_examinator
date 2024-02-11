@@ -26,6 +26,7 @@
 import { useAuthUserStore } from "../../stores/authUserStore";
 import { Fragenkatalog } from "../../views/oralExam/Fragenkatalog.ts";
 
+
 export default {
     props: {
         punkteAnzahl: Number,

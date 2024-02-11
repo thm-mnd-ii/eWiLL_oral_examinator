@@ -164,13 +164,13 @@ const router = createRouter({
     component: ViewOralExam,
     },
     {
-      path: "/testLogin/dashStudent/examListStudent/:id/signupStudent",
+      path: "/dashStudent/examListStudent/:id/signupStudent",
       name: "ViewCourseSignUpStudent",
       component: ViewCourseSignUpStudent,
     },
 
     {
-      path: "/testLogin/dashDozent/coursesDozent/:id/signupDozent",
+      path: "/dashDozent/coursesDozent/:id/signupDozent",
       name: "ViewCourseSignupDozent",
       component: ViewCourseSignUpDozent,
     },
@@ -207,7 +207,9 @@ router.beforeEach(async (to, from, next) => {
     "ViewBugOverview",
     "CoursesListDozent",
     "ViewExamStart",  
-    "ViewOralExam"
+    "ViewOralExam",
+    "ViewCourseSignUpStudent",
+    "ViewCourseSignupDozent",
   ];
   const adminRequired = !nonAdminPages.includes(to.name as string);
   const role = localStorage.getItem("role");
