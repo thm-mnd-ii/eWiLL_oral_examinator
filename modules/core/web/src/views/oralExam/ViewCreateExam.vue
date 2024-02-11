@@ -7,11 +7,6 @@
 
           <v-spacer></v-spacer>
 
-          <v-btn v-if="courseRole == 'OWNER'" variant="text" color="dark-gray" @click="openMembersView">
-            <v-icon size="x-large">mdi-account-group</v-icon>
-            <v-tooltip activator="parent" location="bottom">Teilnehmer</v-tooltip>
-          </v-btn>
-
           <v-btn v-if="courseRole == 'OWNER'" variant="text" color="dark-gray" @click="editCourse">
             <v-icon size="x-large">mdi-cog</v-icon>
             <v-tooltip activator="parent" location="bottom">Kurs bearbeiten</v-tooltip>
@@ -30,10 +25,6 @@
 
       <DialogConfirmVue ref="dialogConfirm"></DialogConfirmVue>
       <DialogEditTask ref="dialogCreateTask"></DialogEditTask>
-
-      <br />
-      <br />
-      <br />
 
       <!-- Karte für Fragenkatalog erstellen -->
       <v-card class="card" @click="openCreateQuestionDialog">
@@ -115,22 +106,7 @@ onMounted(() => {
   });
 });
 
-const leaveCourse = () => {
-  if (dialogConfirm.value) {
-    dialogConfirm.value.openDialog(`Verlasse Kurs: ${course.value?.name}`, "Willst du den Kurs wirklich verlassen?", "Verlassen").then((result: boolean) => {
-      if (result) {
-        courseService
-          .leaveCourse(courseId.value, userId.value)
-          .then(() => {
-            router.push("/");
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-    });
-  }
-};
+
 
 const editCourse = () => {
   if (dialogCreateCourse.value) {
@@ -143,9 +119,6 @@ const editCourse = () => {
 };
 
 
-const openMembersView = () => {
-  router.push(route.path + "/members");
-};
 
 // Funktionen zur Navigation zu den entsprechenden Seiten
 const navigateToCreateQuestionnaire = () => {
@@ -154,19 +127,12 @@ const navigateToCreateQuestionnaire = () => {
 };
 
 const navigateToViewResults = () => {
-  router.push('/view-results');
+  router.push(route.path + '/view-results');
 };
 
-  const openCreateQuestionDialog = () => {
-    console.log(route.path);
-    console.log(dialogCreateQuestion);
-    if (dialogCreateQuestion.value) {
-      dialogCreateQuestion.value.openDialog().then((id: number | undefined) => {
-        if (id !== undefined) {
-          router.push(`${route.path}/${id}`);
-        }
-      });
-      }
+
+const openCreateQuestionDialog = () => {
+   
   };
 
 

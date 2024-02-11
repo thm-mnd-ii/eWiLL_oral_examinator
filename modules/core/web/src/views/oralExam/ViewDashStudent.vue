@@ -57,12 +57,13 @@ import { ref } from 'vue';
 import Feedback from "@/model/Feedback";
 import User from "../../model/User";
 import feedbackService from "../../services/feedback.service";
-import BasicBackground from "@/components/BasicBackground.vue";
 import { useAuthUserStore } from "@/stores/authUserStore";
 import {useRouter} from 'vue-router';
+import {useRoute} from 'vue-router';
 
 
 const router = useRouter();
+const route = useRoute();
 
 const authUserStore = useAuthUserStore();
 
@@ -81,7 +82,7 @@ const sendFeedback = () => {
 
 };
 const redirectToDozentCourses = () => {
-router.push({ path: '/testLogin/dashStudent/examListStudent'});
+router.push( route.path + '/examListStudent');
 };
 
 </script>

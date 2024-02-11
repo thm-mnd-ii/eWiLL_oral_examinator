@@ -15,7 +15,6 @@ import FeedbackReport from "../views/ViewFeedbackReport.vue";
 import FeedbackOverview from "../views/ViewFeedbackOverview.vue";
 import ViewMembers from "../views/ViewMembers.vue";
 import ViewTaskSubmissions from "../views/ViewTaskSubmissions.vue";
-import ViewTestLogin from "@/views/oralExam/ViewTestLogin.vue";
 import ViewDashStudent from "@/views/oralExam/ViewDashStudent.vue";
 import ViewDashDozent from "@/views/oralExam/ViewDashDozent.vue";
 import ViewCoursesDozent from "@/views/oralExam/ViewCoursesDozent.vue";
@@ -26,6 +25,7 @@ import ViewExamStart from "@/views/oralExam/ViewExamStart.vue";
 import ViewOralExam from "@/views/oralExam/ViewOralExam.vue";
 import ViewCourseSignUpDozent from "@/views/oralExam/ViewCourseSignUpDozent.vue";
 import ViewCourseSignUpStudent from "@/views/oralExam/ViewCourseSignUpStudent.vue";
+import ViewDozentResults from "@/views/oralExam/ViewDozentResults.vue";
 
 
 import authService from "@/services/auth.service";
@@ -116,60 +116,61 @@ const router = createRouter({
     },
 
     //? ----------------- OralExam path's ------------------------
+  
     {
-      path: "/testLogin",
-      name: "ViewTestLogin",
-      component: ViewTestLogin,
-    },
-    {
-      path: "/testLogin/dashStudent",
+      path: "/dashStudent",
       name: "ViewDashStudent",
       component: ViewDashStudent,
     },
     {
-      path: "/testLogin/dashDozent",
+      path: "/dashDozent",
       name: "ViewDashDozent",
       component: ViewDashDozent,
     },
     {
-      path: "/testLogin/dashDozent/coursesDozent",
+      path: "/dashDozent/coursesDozent",
       name: "ViewCoursesDozent",
       component: ViewCoursesDozent,
     },
     {
-      path: "/testLogin/dashStudent/examListStudent",
+      path: "/dashStudent/examListStudent",
       name: "ViewCoursesStudent",
       component: ViewCoursesStudent,
     },
 
     {
-      path: "/testLogin/dashDozent/coursesDozent/:createExamId/createQuestion",
+      path: "/dashDozent/coursesDozent/:createExamId/createQuestion",
       name: "ViewCreateCourse",
       component: ViewCreateQuestion,
     },
     {
-      path: "/testLogin/dashDozent/coursesDozent/:createExamId",
+      path: "/dashDozent/coursesDozent/:createExamId/view-results",
+      name: "ViewDozentResults",
+      component: ViewDozentResults,
+    },
+    {
+      path: "/dashDozent/coursesDozent/:createExamId",
       name: "ViewCreateExam",
       component: ViewCreateExam,
     },
      {
-    path: "/testLogin/dashStudent/examListStudent/:examId",
+    path: "/dashStudent/examListStudent/:examId",
     name: "ViewExamStart",
     component: ViewExamStart,
     },
      {
-    path: "/testLogin/dashStudent/examListStudent/:examId/:stufe",
+    path: "/dashStudent/examListStudent/:examId/:stufe",
     name: "ViewOralExam",
     component: ViewOralExam,
     },
     {
-      path: "/testLogin/dashStudent/examListStudent/:id/signupStudent",
+      path: "/dashStudent/examListStudent/:id/signupStudent",
       name: "ViewCourseSignUpStudent",
       component: ViewCourseSignUpStudent,
     },
 
     {
-      path: "/testLogin/dashDozent/coursesDozent/:id/signupDozent",
+      path: "/dashDozent/coursesDozent/:id/signupDozent",
       name: "ViewCourseSignupDozent",
       component: ViewCourseSignUpDozent,
     },
@@ -197,7 +198,6 @@ router.beforeEach(async (to, from, next) => {
     "ViewMembers",
     "ViewTaskSubmissions",
     //? --------------------------- OralExam Views ------------------------------
-    "ViewTestLogin",
     "ViewDashStudent",
     "ViewCoursesDozent",
     "ViewCoursesStudent",   
@@ -207,7 +207,9 @@ router.beforeEach(async (to, from, next) => {
     "ViewBugOverview",
     "CoursesListDozent",
     "ViewExamStart",  
-    "ViewOralExam"
+    "ViewOralExam",
+    "ViewCourseSignUpStudent",
+    "ViewCourseSignupDozent",
   ];
   const adminRequired = !nonAdminPages.includes(to.name as string);
   const role = localStorage.getItem("role");

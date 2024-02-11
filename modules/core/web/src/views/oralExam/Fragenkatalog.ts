@@ -1,5 +1,11 @@
+// import ergebnisseArray from "../dialog/oralExaminator/DialogEndOfExam.vue";
+
 export const Fragenkatalog = {
-    // Methode für Stufe 1
+    
+    // setErgniss() {
+    //     console.log(ergebnisseArray);
+    // },
+
     dataStufe1() {
         return {
             pruefungAbgebrochen: false,
@@ -88,7 +94,13 @@ export const Fragenkatalog = {
                 { frageId: 32, loesungen: ["Daten", "Zugriff", "Daten", "Sicherheit", "mobil", "Anwendung"] },
                 { frageId: 33, loesungen: ["Weiterbildung", "Workshops", "Online", "Kurse"] },
             ],
-            showResult: false
+            showResult: false,
+            ergebnisse: [
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Leicht" , feedback: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" },
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Leicht" , feedback: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" },
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Leicht" , feedback: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" },
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Leicht" , feedback: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" },
+            ]
         };
     },
     // Methode für Stufe 2
@@ -98,7 +110,7 @@ export const Fragenkatalog = {
             schwierigkeit: 'Mittel',
             startTime: null,
             currentTime: null,
-            duration: 600, // 10 Minuten in Sekunden
+            duration: 900, // 15 Minuten in Sekunden
             timerInterval: null,
             recognition: null,
             isRecording: false, // Zustand der Aufnahme
@@ -184,7 +196,7 @@ export const Fragenkatalog = {
             ],
             showResult: false,
             ergebnisse: [
-                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Leicht" }
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Mittel", feedback: "war okey" }
             ]
         };
     },
@@ -195,7 +207,7 @@ export const Fragenkatalog = {
             schwierigkeit: 'Schwer',
             startTime: null,
             currentTime: null,
-            duration: 600, // 10 Minuten in Sekunden
+            duration: 1200, // 20 Minuten in Sekunden
             timerInterval: null,
             recognition: null,
             isRecording: false, // Zustand der Aufnahme
@@ -278,7 +290,7 @@ export const Fragenkatalog = {
             ],
             showResult: false,
             ergebnisse: [
-                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Schwer" }
+                { username: "test42", punkte: 9, status: "bestanden", datum: "10.02.24", stufe: "Schwer", feedback: "war okey" }
             ]
         };
     }
