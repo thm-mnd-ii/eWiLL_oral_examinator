@@ -1,9 +1,15 @@
 <template>
   <div class="page-container">
-    <div class="frage-container">
-      <h1>test{{ pruefungsFragen[randomFrageId].id}} </h1>
+    <div v-if="!pruefungAbgebrochen">
+    </div>
+    <div v-else>
+   <p>Die Prüfung wurde abgebrochen. Bitte wenden Sie sich an Ihren Prüfer.</p>
+    </div>
+  <div class="frage-container">
+     
+      <h1>test{{ pruefungsFragen[randomFrageId].id }}</h1>
       <iframe :src="pruefungsFragen[randomFrageId].videoUrl" width="915" height="515" frameborder="0"
-        allowfullscreen></iframe>
+              allowfullscreen></iframe>
       <div class="frage-nummer">
         Frage {{ aktuelleFrageIndex + 1 }} / {{ gesamtFragen }}
       </div>
@@ -13,8 +19,8 @@
           <div class="timer-counter">{{ formatTime(remainingTime) }}</div>
         </div>
       </div>
-      <button @click="toggleRecognition(pruefungsFragen[aktuelleFrageIndex].id)" :class="{ 'is-recording': isRecording }"
-        class="microphone-button">
+      <button @click="toggleRecognition(pruefungsFragen[aktuelleFrageIndex].id)"
+              :class="{ 'is-recording': isRecording }" class="microphone-button">
         <div class="microphone-icon">
           <div class="mic-top"></div>
           <div class="mic-body"></div>
@@ -22,20 +28,18 @@
       </button>
       <button class="next-button" @click="gotoNextQuestion">Nächste Frage</button>
       <div v-if="transcript">Ihre Antwort: {{ transcript }}</div>
-      <div v-if="bewertung !== null">Bewertung: {{ bewertung ? 'Richtig' : 'Falsch' }}</div>
     </div>
+
     <div class="cancel-button" @click="showConfirmation">X</div>
     <div v-if="isConfirmationVisible" class="confirmation-dialog">
       <p>Sind Sie sich sicher, dass Sie die Prüfung abbrechen wollen?</p>
-      <p>Eine abgebrochene Prüfung zählt hier im System als Fehlversuch.</p>
       <div class="confirmation-buttons">
         <button class="confirmation-button" @click="cancel">Prüfung nicht abbrechen</button>
         <button class="confirmation-button" @click="confirm">Prüfung abbrechen</button>
       </div>
     </div>
   </div>
-  <DialogEndOfExam :punkteAnzahl="punkteAnzahl" :gesamtFragen="gesamtFragen" :schwierigkeit="schwierigkeit"
-    v-if=" this.showResult" />
+  <DialogEndOfExam v-if=" this.showResult" :punkteAnzahl="punkteAnzahl" :gesamtFragen="gesamtFragen" :schwierigkeit="schwierigkeit"  />
 </template>
 
 <script>
@@ -50,8 +54,8 @@ let stufe = '';
 
 export default {
   components: {
-    DialogEndOfExam
-  },
+    DialogEndOfExam 
+  }, 
 
   beforeCreate() {
     const route = useRoute();
@@ -75,49 +79,70 @@ export default {
   },
   computed: {
     remainingTime() {
-      return Math.max(this.duration - Math.floor((this.currentTime - this.startTime) / 1000), 0);
-    }
+                  return Math.max(this.duration - Math.floor((this.currentTime - this.startTime) / 1000), 0);
+              }
   },
 
-  mounted() {
+  
+    mounted() {
     const authUserStore = useAuthUserStore();
-    if (authUserStore.auth.user) {
-      // Extrahieren des Benutzernamens
-      this.username = authUserStore.auth.user.username;
 
+    if (authUserStore.auth.user) {
+        // Extrahieren des Benutzernamens
+        this.username = authUserStore.auth.user.username;
     }
+
     this.startTime = Date.now();
     this.timerInterval = setInterval(() => {
-      this.currentTime = Date.now();
+        this.currentTime = Date.now();
+        const timeLeft = this.remainingTime;
+        if (timeLeft <= 0) {
+            clearInterval(this.timerInterval); // Stoppt den Timer
+            this.onTimeExpired(); // Methode aufrufen, wenn die Zeit abgelaufen ist
+        }
     }, 1000);
-  },
+},
 
   beforeUnmount() {
     clearInterval(this.timerInterval);
   },
 
   methods: {
-    formatTime(timeInSeconds) {
-      const minutes = Math.floor(timeInSeconds / 60);
-      const seconds = timeInSeconds % 60;
-      // Fehlende Template-Literal-Syntax korrigiert
-      return `${this.padTime(minutes)}:${this.padTime(seconds)}`;
-    },
-    padTime(time) {
-      return (time < 10 ? '0' : '') + time;
-    },
 
-    showConfirmation() {
-      this.isConfirmationVisible = true;
+    onTimeExpired() {
+              alert('Die Prüfungszeit ist abgelaufen. Die Prüfung wird jetzt abgebrochen.');
+              this.pruefungAbgebrochen = true; // Setzen Sie den Zustand auf abgebrochen
+              // Implementieren Sie hier zusätzliche Logik für den Abbruch der Prüfung
+             this.$router.push('/testLogin/dashStudent/examListStudent');
     },
-    cancel() {
-      this.isConfirmationVisible = false;
-      console.log('Prüfung nicht abgebrochen');
-    },
-    confirm() {
-      this.isConfirmationVisible = false;
-      console.log('Prüfung abgebrochen');
-    },
+    
+
+              formatTime(timeInSeconds) {
+                  const minutes = Math.floor(timeInSeconds / 60);
+                  const seconds = timeInSeconds % 60;
+                  // Fehlende Template-Literal-Syntax korrigiert
+                  return `${this.padTime(minutes)}:${this.padTime(seconds)}`;
+              },
+
+              padTime(time) {
+                  return (time < 10 ? '0' : '') + time;
+              },
+          
+              showConfirmation() {
+                  this.isConfirmationVisible = true;
+              },
+              cancel() {
+                  this.isConfirmationVisible = false;
+                  console.log('Prüfung nicht abgebrochen');
+              },
+              confirm() {
+               // Bestätigung anzeigen und Prüfung abbrechen, wenn der Benutzer zustimmt
+               if (confirm('Prüfung wurde angebrochen!')) {
+               this.pruefungAbgebrochen = true; // Setzen Sie den Zustand auf abgebrochen
+               this.$router.push('/testLogin/dashStudent/examListStudent');
+    } 
+  },
+    
 
     toggleRecognition(frageId) {
       if (this.recognition && this.isRecording) {
@@ -210,191 +235,215 @@ export default {
 
 </script>
 <style scoped lang="scss">
-
+          
 .page-container {
-  position: relative;
+position: relative;
 }
 
+
 .frage-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-bottom: 20px;
 }
 
 iframe {
-  // Stellen Sie sicher, dass das Iframe responsive ist und sich gut in Ihr Layout einfügt
-  max-width: 100%;
-  border: none; // Entfernt die Standardrahmen um das Iframe
-  // Optional: Runden Sie die Ecken des Iframe ab, wenn Sie möchten
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
+// Stellen Sie sicher, dass das Iframe responsive ist und sich gut in Ihr Layout einfügt
+max-width: 100%;
+border: none; // Entfernt die Standardrahmen um das Iframe
+// Optional: Runden Sie die Ecken des Iframe ab, wenn Sie möchten
+border-radius: 10px;
+box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
 }
 
 .microphone-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  margin-top: 20px; // Abstand vom Video
+background: none;
+border: none;
+cursor: pointer;
+padding: 10px;
+margin-top: 20px; // Abstand vom Video
 }
 
 .microphone-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  border: 2px solid currentColor; /* Farbe des Icons */
-  border-radius: 50%;
-  color: #555; /* Farbe des Icons */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+display: flex;
+justify-content: center;
+align-items: center;
+width: 40px;
+height: 40px;
+border: 2px solid currentColor; /* Farbe des Icons */
+border-radius: 50%;
+color: #555; /* Farbe des Icons */
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
 }
 
 .mic-top {
-  background-color: currentColor;
-  width: 50%;
-  height: 8px;
-  border-radius: 8px 8px 0 0;
-  box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
+background-color: currentColor;
+width: 50%;
+height: 8px;
+border-radius: 8px 8px 0 0;
+box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
 }
 
 .mic-body {
-  background-color: currentColor;
-  width: 60%;
-  height: 24px;
-  border-radius: 11px;
-  margin-top: -4px; /* Adjust this value to fit the design */
-  box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
+background-color: currentColor;
+width: 60%;
+height: 24px;
+border-radius: 11px;
+margin-top: -4px; /* Adjust this value to fit the design */
+box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
 }
 
 .is-recording {
-  .microphone-icon,
-  .mic-top,
-  .mic-body {
-    border-color: red; // Ändert die Farbe des Rahmens in Rot
-    background-color: red; // Ändert die Farbe des Mikrofons in Rot
-    box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
-  }
+.microphone-icon,
+.mic-top,
+.mic-body {
+border-color: red; // Ändert die Farbe des Rahmens in Rot
+background-color: red; // Ändert die Farbe des Mikrofons in Rot
+box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
+}
 }
 
 .cancel-button {
-  position: absolute;
-  right: 40px; // Abstand vom rechten Rand des Containers
-  bottom: 20px; // Abstand vom unteren Rand des Containers
-  width: 40px; // Breite des Buttons
-  height: 40px; // Höhe des Buttons
-  border-radius: 40%; // Machen Sie den Button kreisförmig
-  background-color: rgb(186, 25, 25); // Farbe des Buttons
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px; // Größe des X-Symbols
-  color: white; // Farbe des X-Symbols
-  cursor: pointer; // Cursor-Stil beim Hover
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // Schatten für 3D-Effekt
-  border: none; // Kein Rand
-  outline: none; // Entfernt den Fokus-Rand, der manchmal von Browsern hinzugefügt wird
+position: absolute;
+right: 40px; // Abstand vom rechten Rand des Containers
+bottom: 20px; // Abstand vom unteren Rand des Containers
+width: 40px; // Breite des Buttons
+height: 40px; // Höhe des Buttons
+border-radius: 40%; // Machen Sie den Button kreisförmig
+background-color: rgb(186, 25, 25); // Farbe des Buttons
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 20px; // Größe des X-Symbols
+color: white; // Farbe des X-Symbols
+cursor: pointer; // Cursor-Stil beim Hover
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // Schatten für 3D-Effekt
+border: none; // Kein Rand
+outline: none; // Entfernt den Fokus-Rand, der manchmal von Browsern hinzugefügt wird
 }
 
 .confirmation-dialog {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+text-align: center;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: white;
+padding: 20px;
+border-radius: 5px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
 .cancel-button:hover {
-  background-color: rgb(130, 4, 4);
+background-color: rgb(130, 4, 4);
 }
 
 .cancel-button:focus {
-  outline: none; // Entfernen Sie den Umriss, wenn der Button fokussiert ist (für die Zugänglichkeit möglicherweise nicht ideal)
+outline: none; // Entfernen Sie den Umriss, wenn der Button fokussiert ist (für die Zugänglichkeit möglicherweise nicht ideal)
 }
 
 .confirmation-buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+display: flex;
+justify-content: center;
+margin-top: 20px;
 }
 .confirmation-button {
-  border: 1px solid black;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #d6f5c8;
-  flex: 1;
-  margin: 0 5px;
+border: 1px solid black;
+padding: 10px 20px;
+border-radius: 5px;
+cursor: pointer;
+background-color: #d6f5c8;
+flex: 1;
+margin: 0 5px;
 }
 
 .confirmation-button:hover {
-  background-color: #b9f0a2;
+background-color: #b9f0a2;
 }
 
 .frage-nummer {
-  font-weight: 800;
-  font-size: larger;
-  position: absolute; // Positioniert relativ zum nächsten positionierten Vorfahren
-  right: 0; // Rechts ausgerichtet im übergeordneten Container
-  top: 0; // Oben im übergeordneten Container
-  padding: 10px; // Ein wenig Platz um den Text
-  background: rgba(0, 0, 0, 0.7); // Ein semi-transparenter Hintergrund
-  color: white; // Weiße Textfarbe
-  border-radius: 0 0 0 10px; // Abgerundete Ecke unten links
+font-weight: 800;
+font-size: larger;
+position: absolute; // Positioniert relativ zum nächsten positionierten Vorfahren
+right: 0; // Rechts ausgerichtet im übergeordneten Container
+top: 0; // Oben im übergeordneten Container
+padding: 10px; // Ein wenig Platz um den Text
+background: rgba(0, 0, 0, 0.7); // Ein semi-transparenter Hintergrund
+color: white; // Weiße Textfarbe
+border-radius: 0 0 0 10px; // Abgerundete Ecke unten links
 }
 
 .timer {
-  position: absolute;
-  top: 10px;
-  left: 10px; /* Links ausgerichtet */
-  padding: 5px 7px;
-  background-color: #ffffff; /* Hintergrundfarbe des Timers */
-  border-radius: 25px; /* Runde Ecken */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leichter Schatten für den Timer */
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #333333; /* Textfarbe */
-  display: flex;
-  align-items: center;
-  z-index: 1; /* Stellen Sie sicher, dass der Timer über dem Video liegt */
+position: absolute;
+top: 10px;
+left: 10px; /* Links ausgerichtet */
+padding: 5px 7px;
+background-color: #ffffff; /* Hintergrundfarbe des Timers */
+border-radius: 25px; /* Runde Ecken */
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leichter Schatten für den Timer */
+font-size: 1.2em;
+font-weight: bold;
+color: #333333; /* Textfarbe */
+display: flex;
+align-items: center;
+z-index: 1; /* Stellen Sie sicher, dass der Timer über dem Video liegt */
 }
 
 
 .timer-box {
-  border: 2px solid #eeeeee; /* Randfarbe des inneren Behälters */
-  border-radius: 20px; /* Runde Ecken */
-  padding: 8px 15px; /* Innenabstand */
-  background-color: #ffffff; /* Hintergrundfarbe des inneren Behälters */
-  display: flex;
-  align-items: center;
+border: 2px solid #eeeeee; /* Randfarbe des inneren Behälters */
+border-radius: 20px; /* Runde Ecken */
+padding: 8px 15px; /* Innenabstand */
+background-color: #ffffff; /* Hintergrundfarbe des inneren Behälters */
+display: flex;
+align-items: center;
 }
 
 .timer-label {
-  font-size: 16px;
-  margin-right: 10px; /* Abstand zwischen Label und Zähler */
+font-size: 16px;
+margin-right: 10px; /* Abstand zwischen Label und Zähler */
 }
 
 .timer-counter {
-  font-size: 24px;
-  color: #ff4500; /* Farbe des Zählers */
+font-size: 24px;
+color: #ff4500; /* Farbe des Zählers */
 }
 
 .next-button {
-  background-color: #4CAF50; /* Hintergrundfarbe */
-  color: #fff; /* Textfarbe */
-  border: none; /* Rand */
-  border-radius: 5px; /* Abgerundete Ecken */
-  padding: 10px 20px; /* Innenabstand */
-  font-size: 16px; /* Schriftgröße */
-  cursor: pointer; /* Zeiger beim Überfahren */
-  transition: background-color 0.3s; /* Übergangseffekt */
+background-color: #4CAF50; /* Hintergrundfarbe */
+color: #fff; /* Textfarbe */
+border: none; /* Rand */
+border-radius: 5px; /* Abgerundete Ecken */
+padding: 10px 20px; /* Innenabstand */
+font-size: 16px; /* Schriftgröße */
+cursor: pointer; /* Zeiger beim Überfahren */
+transition: background-color 0.3s; /* Übergangseffekt */
 }
 
 .next-button:hover {
-  background-color: #45a049; /* Hintergrundfarbe beim Überfahren */
+background-color: #45a049; /* Hintergrundfarbe beim Überfahren */
 }
+
+
+
+
+
+/* Stil für die Buttons */
+.confirmation-button {
+margin: 10px;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+background-color: #5fe392; /* Primärfarbe */
+color: white; /* Textfarbe */
+cursor: pointer; /* Cursor-Stil */
+}
+
+.confirmation-button:hover {
+background-color: #c70616; /* Dunklere Schattierung bei Hover */
+}
+
+
+
 </style>

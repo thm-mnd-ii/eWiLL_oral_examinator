@@ -2,6 +2,7 @@ export const Fragenkatalog = {
     // Methode für Stufe 1
     dataStufe1() {
         return {
+            pruefungAbgebrochen: false,
             schwierigkeit: 'Leicht',
             startTime: null,
             currentTime: null,
@@ -93,6 +94,7 @@ export const Fragenkatalog = {
     // Methode für Stufe 2
     dataStufe2() {
         return {
+            pruefungAbgebrochen: false,
             schwierigkeit: 'Mittel',
             startTime: null,
             currentTime: null,
@@ -189,6 +191,7 @@ export const Fragenkatalog = {
     // Methode für Stufe 3
     dataStufe3() {
         return {
+            pruefungAbgebrochen: false,
             schwierigkeit: 'Schwer',
             startTime: null,
             currentTime: null,
