@@ -2,14 +2,15 @@
   <BasicBackground> 
     <v-card class="card">
       <v-card-title class="title">
-        <span>Herzlich willkommen...</span>
+        <span>Oral Examinator</span>
 
         <!-- <span> <IconEWiLL /> </span> -->
       </v-card-title>
-      <v-card-text class="text"> ...auf unserer neuen Modellierungsplattform eWiLL. In der aktuellen Version steht Euch die Modellierung zur Verfügung, viele weitere Features folgen in der Zukunft. Eure erstellten Diagramme könnt ihr abspeichern und in verschiedenen Kategorien einsortieren, die Ihr ebenfalls selber anlegen könnt. </v-card-text>
+      <v-card-text class="text"> Herzlich willkommen auf Oral Examinator, deiner Plattform für simulierte mündliche Prüfungen im Fach Datenmanagement. Wir bieten dir eine einzigartige Möglichkeit, dein Wissen zu testen und deine mündlichen Präsentationsfähigkeiten zu schärfen. </v-card-text>
       <v-card-actions>
         <v-spacer>
-          <v-btn variant="flat" color="primary-dark" to="/modeling">Hier könnt Ihr modellieren</v-btn>
+          <v-btn v-if="isAdmin" variant="flat" color="primary-dark" to="/testLogin/dashDozent"> Hier geht's zu deinem Dashboard </v-btn>
+          <v-btn v-if="isUser" variant="flat" color="primary-dark" to="/testLogin/dashStudent"> Hier geht's zu deinem Dashboard </v-btn>
         </v-spacer>
       </v-card-actions>
     </v-card>
@@ -17,7 +18,21 @@
 </template>
 
 <script setup lang="ts">
+import { useAuthUserStore } from "../stores/authUserStore";
 import BasicBackground from '@/components/BasicBackground.vue';
+import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
+import GlobalRoles from "@/enums/GlobalRoles";
+
+const authUserStore = useAuthUserStore();
+const isAdmin = ref(false);
+const isUser = ref(false);
+
+onMounted(() => {
+isUser.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_USER)!;
+isAdmin.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_ADMIN)!;
+
+});
 </script>
 
 <style scoped lang="scss">

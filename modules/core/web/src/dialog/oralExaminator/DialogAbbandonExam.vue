@@ -1,16 +1,19 @@
 <template>
-    <v-dialog v-model="dialogCancelExam" max-width="700" :persistent="true">
+    <v-dialog v-model="showResult" max-width="700" :persistent="true">
         <v-card class="result-card">
             <v-card-title class="result-title">Ergebnisse</v-card-title>
+            <v-card-subtitle v-if="message != null" class="result-subtitle">{{ message }}</v-card-subtitle>
             <v-card-text>
                 <div>
-                    <p>Sind Sie sicher, dass sie diese Prüfung abbrechen wollen? </p>
-                    <P>Alle bis jetzt richtig beantwortete Fragen werden nicht gewertet!</P> 
+                    <p>Ergebnis: <span :class="{ 'result-status': true, 'passed': passed, 'not-passed': !passed }">{{ passed ? 'Bestanden' : 'Nicht Bestanden' }}</span></p>
+                    <p>Richtig beantwortete Fragen: {{ correctAnswers }}</p>
+                    <p>Schwierigkeit: {{ giveStufe }}</p>
+                    <p>Datum: {{ formattedDate }}</p>
                 </div>
             </v-card-text>
             <v-card-actions>
-                <v-btn color="primary" @click="cancelExam">Prüfung abbrechen</v-btn>
-                <v-btn color="success" @click="back ">zurück zur Prüfung </v-btn>
+                <v-btn color="primary" @click="goBack">Zurück</v-btn>
+                <v-btn color="success" @click="retry">Erneut Versuchen</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -21,13 +24,13 @@ export default {
     props: {
         punkteAnzahl: Number,
         gesamtFragen: Number,
-        schwierigkeit: String
+        schwierigkeit: String,
+        message : String,
     },
     data() {
         return {
             showResult: true,
             date: new Date(),
-
         }
     },
     computed: {
@@ -35,28 +38,22 @@ export default {
             return this.date.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
         },
         correctAnswers() {
-            return (this.punkteAnzahl + "/" + this.gesamtFragen)
+            return `${this.punkteAnzahl} / ${this.gesamtFragen}`;
         },
-
         passed() {
-
             return this.punkteAnzahl >= this.gesamtFragen / 2;
         },
-
         giveStufe() {
             return this.schwierigkeit;
         }
-
     },
     methods: {
         goBack() {
             this.$router.push('/testLogin/dashStudent/examListStudent');
         },
         retry() {
-            location.reload()
-        },
-
-
+            location.reload();
+        }
     }
 }
 </script>
@@ -73,6 +70,18 @@ export default {
 }
 
 .result-status {
+    font-weight: bold;
+}
+
+.passed {
     color: #4caf50;
+}
+
+.not-passed {
+    color: red;
+}
+
+.result-subtitle {
+    color: red;
 }
 </style>
