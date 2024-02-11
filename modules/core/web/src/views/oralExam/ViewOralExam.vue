@@ -3,13 +3,13 @@
     <div v-if="!pruefungAbgebrochen">
     </div>
     <div v-else>
-   <p>Die Prüfung wurde abgebrochen. Bitte wenden Sie sich an Ihren Prüfer.</p>
+      <p>Die Prüfung wurde abgebrochen. Bitte wenden Sie sich an Ihren Prüfer.</p>
     </div>
-  <div class="frage-container">
-     
+    <div class="frage-container">
+
       <h1>test{{ pruefungsFragen[randomFrageId].id }}</h1>
       <iframe :src="pruefungsFragen[randomFrageId].videoUrl" width="915" height="515" frameborder="0"
-              allowfullscreen></iframe>
+        allowfullscreen></iframe>
       <div class="frage-nummer">
         Frage {{ aktuelleFrageIndex + 1 }} / {{ gesamtFragen }}
       </div>
@@ -19,8 +19,8 @@
           <div class="timer-counter">{{ formatTime(remainingTime) }}</div>
         </div>
       </div>
-      <button @click="toggleRecognition(pruefungsFragen[aktuelleFrageIndex].id)"
-              :class="{ 'is-recording': isRecording }" class="microphone-button">
+      <button @click="toggleRecognition(pruefungsFragen[aktuelleFrageIndex].id)" :class="{ 'is-recording': isRecording }"
+        class="microphone-button">
         <div class="microphone-icon">
           <div class="mic-top"></div>
           <div class="mic-body"></div>
@@ -39,7 +39,8 @@
       </div>
     </div>
   </div>
-  <DialogEndOfExam v-if=" this.showResult" :punkteAnzahl="punkteAnzahl" :gesamtFragen="gesamtFragen" :schwierigkeit="schwierigkeit"  />
+  <DialogEndOfExam v-if=" this.showResult" :punkteAnzahl="punkteAnzahl" :gesamtFragen="gesamtFragen"
+    :schwierigkeit="schwierigkeit" />
 </template>
 
 <script>
@@ -54,8 +55,8 @@ let stufe = '';
 
 export default {
   components: {
-    DialogEndOfExam 
-  }, 
+    DialogEndOfExam
+  },
 
   beforeCreate() {
     const route = useRoute();
@@ -79,29 +80,29 @@ export default {
   },
   computed: {
     remainingTime() {
-                  return Math.max(this.duration - Math.floor((this.currentTime - this.startTime) / 1000), 0);
-              }
+      return Math.max(this.duration - Math.floor((this.currentTime - this.startTime) / 1000), 0);
+    }
   },
 
-  
-    mounted() {
+
+  mounted() {
     const authUserStore = useAuthUserStore();
 
     if (authUserStore.auth.user) {
-        // Extrahieren des Benutzernamens
-        this.username = authUserStore.auth.user.username;
+      // Extrahieren des Benutzernamens
+      this.username = authUserStore.auth.user.username;
     }
 
     this.startTime = Date.now();
     this.timerInterval = setInterval(() => {
-        this.currentTime = Date.now();
-        const timeLeft = this.remainingTime;
-        if (timeLeft <= 0) {
-            clearInterval(this.timerInterval); // Stoppt den Timer
-            this.onTimeExpired(); // Methode aufrufen, wenn die Zeit abgelaufen ist
-        }
+      this.currentTime = Date.now();
+      const timeLeft = this.remainingTime;
+      if (timeLeft <= 0) {
+        clearInterval(this.timerInterval); // Stoppt den Timer
+        this.onTimeExpired(); // Methode aufrufen, wenn die Zeit abgelaufen ist
+      }
     }, 1000);
-},
+  },
 
   beforeUnmount() {
     clearInterval(this.timerInterval);
@@ -110,39 +111,39 @@ export default {
   methods: {
 
     onTimeExpired() {
-              alert('Die Prüfungszeit ist abgelaufen. Die Prüfung wird jetzt abgebrochen.');
-              this.pruefungAbgebrochen = true; // Setzen Sie den Zustand auf abgebrochen
-              // Implementieren Sie hier zusätzliche Logik für den Abbruch der Prüfung
-             this.$router.push('/testLogin/dashStudent/examListStudent');
+      alert('Die Prüfungszeit ist abgelaufen. Die Prüfung wird jetzt abgebrochen.');
+      this.pruefungAbgebrochen = true; // Setzen Sie den Zustand auf abgebrochen
+      // Implementieren Sie hier zusätzliche Logik für den Abbruch der Prüfung
+      this.$router.push('/dashStudent/examListStudent');
     },
-    
 
-              formatTime(timeInSeconds) {
-                  const minutes = Math.floor(timeInSeconds / 60);
-                  const seconds = timeInSeconds % 60;
-                  // Fehlende Template-Literal-Syntax korrigiert
-                  return `${this.padTime(minutes)}:${this.padTime(seconds)}`;
-              },
 
-              padTime(time) {
-                  return (time < 10 ? '0' : '') + time;
-              },
-          
-              showConfirmation() {
-                  this.isConfirmationVisible = true;
-              },
-              cancel() {
-                  this.isConfirmationVisible = false;
-                  console.log('Prüfung nicht abgebrochen');
-              },
-              confirm() {
-               // Bestätigung anzeigen und Prüfung abbrechen, wenn der Benutzer zustimmt
-               if (confirm('Prüfung wurde angebrochen!')) {
-               this.pruefungAbgebrochen = true; // Setzen Sie den Zustand auf abgebrochen
-               this.$router.push('/testLogin/dashStudent/examListStudent');
-    } 
-  },
-    
+    formatTime(timeInSeconds) {
+      const minutes = Math.floor(timeInSeconds / 60);
+      const seconds = timeInSeconds % 60;
+      // Fehlende Template-Literal-Syntax korrigiert
+      return `${this.padTime(minutes)}:${this.padTime(seconds)}`;
+    },
+
+    padTime(time) {
+      return (time < 10 ? '0' : '') + time;
+    },
+
+    showConfirmation() {
+      this.isConfirmationVisible = true;
+    },
+    cancel() {
+      this.isConfirmationVisible = false;
+      console.log('Prüfung nicht abgebrochen');
+    },
+    confirm() {
+      // Bestätigung anzeigen und Prüfung abbrechen, wenn der Benutzer zustimmt
+      if (confirm('Prüfung wurde angebrochen!')) {
+        this.pruefungAbgebrochen = true; // Setzen Sie den Zustand auf abgebrochen
+        this.$router.push('/testLogin/dashStudent/examListStudent');
+      }
+    },
+
 
     toggleRecognition(frageId) {
       if (this.recognition && this.isRecording) {

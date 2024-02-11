@@ -51,7 +51,6 @@ export default {
         },
         correctAnswers() {
             return (this.punkteAnzahl + "/" + this.gesamtFragen)
-            return (this.punkteAnzahl + "/" + this.gesamtFragen)
         },
 
         passed() {
@@ -89,7 +88,7 @@ export default {
             // Hier kannst du das Feedback speichern oder andere Aktionen ausführen, bevor du zur vorherigen Seite zurückgehst
             console.log('Feedback:', this.feedback);
             this.addResult();
-            this.$router.push('/testLogin/dashStudent/examListStudent');
+            this.$router.push('/dashStudent/examListStudent');
         },
         retry() {
             // Hier kannst du das Feedback speichern oder andere Aktionen ausführen, bevor du die Seite neu lädst

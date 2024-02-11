@@ -1,26 +1,26 @@
 <template>
-    <div class="container">
-      <v-card class="card">
-        <v-card-item>
-          <v-card-title>Für den Kurs {{ course?.name }} einschreiben</v-card-title>
+  <div class="container">
+    <v-card class="card">
+      <v-card-item>
+        <v-card-title>Für den Kurs {{ course?.name }} einschreiben</v-card-title>
+
+        <v-card-subtitle>
+          Standort: {{ course?.location }}
+        </v-card-subtitle>
+      </v-card-item>
+
+      <v-text-field v-model="key" label="Einschreibeschlüssel" class="textfield" variant="solo"></v-text-field>
+      <v-card-actions>
+        <v-btn class="button" color="warning" @click="signup">Einschreiben</v-btn>
+      </v-card-actions>
+    </v-card>
+  </div>
+  <v-snackbar v-model="snackbarSuccess" :timeout="2500"> Einschreibung erfolgreich </v-snackbar>
+  <v-snackbar v-model="snackbarPassword" :timeout="2500"> Passwort falsch, bitte versuchen Sie es erneut </v-snackbar>
+  <v-snackbar v-model="snackbarError" :timeout="2500"> Oops, something went wrong </v-snackbar>
+</template>
   
-          <v-card-subtitle>
-            Standort: {{ course?.location }}
-          </v-card-subtitle>
-        </v-card-item>
-  
-        <v-text-field v-model="key" label="Einschreibeschlüssel" class="textfield" variant="solo"></v-text-field>
-        <v-card-actions>
-          <v-btn class="button" color="warning" @click="signup">Einschreiben</v-btn>
-        </v-card-actions>
-      </v-card>
-    </div>
-    <v-snackbar v-model="snackbarSuccess" :timeout="2500"> Einschreibung erfolgreich </v-snackbar>
-    <v-snackbar v-model="snackbarPassword" :timeout="2500"> Passwort falsch, bitte versuchen Sie es erneut </v-snackbar>
-    <v-snackbar v-model="snackbarError" :timeout="2500"> Oops, something went wrong </v-snackbar>
-  </template>
-  
-  <script setup lang="ts">
+<script setup lang="ts">
   import { onMounted, ref } from "vue";
   import { useRoute, useRouter } from "vue-router";
   import { useAuthUserStore } from "../../stores/authUserStore";
@@ -59,7 +59,7 @@
             console.log(course)
             console.log(courseId)
             console.log(course.value)
-            router.push("/testLogin/dashDozent/coursesDozent/" + courseId.value);
+            router.push("/dashDozent/coursesDozent/" + courseId.value);
           }
         })
         .catch((error) => {
@@ -74,7 +74,7 @@
   };
   </script>
   
-  <style scoped lang="scss">
+<style scoped lang="scss">
   .card {
     max-width: 600px;
     background-color: #12BC00;
