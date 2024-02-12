@@ -54,33 +54,24 @@ import { onMounted, ref} from "vue";
 import { useRoute } from "vue-router";
 import { useAuthUserStore } from "../../stores/authUserStore";
 import { useRouter } from "vue-router";
-
 import TaskList from "../../components/TaskList.vue";
 import CoursePL from "../../model/course/CoursePL";
 import courseService from "../../services/course.service";
-
-import DialogConfirmVue from "../../dialog/DialogConfirm.vue";
 import DialogCreateCourse from "@/dialog/DialogCreateCourse.vue";
-import DialogEditTask from "@/dialog/DialogEditTask.vue";
 import BasicBackground from "@/components/BasicBackground.vue";
-import ViewCreateQuestion from "../oralExam/ViewCreateQuestion.vue";
+
 
 
 const route = useRoute();
 const router = useRouter();
 const authUserStore = useAuthUserStore();
-
 const taskList = ref<typeof TaskList>();
 const course = ref<CoursePL>();
-// neuer Path
 const courseId = ref(Number(route.params.createExamId));
 const userId = ref(authUserStore.auth.user?.id);
 const courseRole = ref("");
-
-const dialogConfirm = ref<typeof DialogConfirmVue>();
 const dialogCreateCourse = ref<typeof DialogCreateCourse>();
-const dialogCreateTask = ref<typeof DialogEditTask>();
-const dialogCreateQuestion = ref<typeof ViewCreateQuestion>();
+
 
 
 

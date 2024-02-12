@@ -55,11 +55,7 @@
         .joinCourse(courseId.value, key.value, userId.value)
         .then((response) => {
           if (response.status == 200) {
-            console.log(route.path)
-            console.log(course)
-            console.log(courseId)
-            console.log(course.value)
-            router.push("/dashDozent/coursesDozent/" + courseId.value);
+            router.push("/dashDozent/coursesDozent/" + courseId.value); //Pfad zur ausgewählten Prüfung nach eingabe des Passworts
           }
         })
         .catch((error) => {

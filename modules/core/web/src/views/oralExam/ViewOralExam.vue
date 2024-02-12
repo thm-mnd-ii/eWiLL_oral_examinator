@@ -65,7 +65,6 @@ export default {
 
 
   data() {
-    // Annahme: `stufe` ist eine Variable, die die aktuelle Stufe speichert
     if (stufe === "Einfach") {
       return Fragenkatalog.dataStufe1();
     } else if (stufe === "Mittel") {
@@ -103,24 +102,17 @@ export default {
     }, 1000);
   },
 
-  //  beforeUnmount() {
-  //   clearInterval(this.timerInterval);
-  // },
-
   methods: {
 
     onTimeExpired() {
       this.message = " Die Prüfungszeit  ist leider abgelaufen ist ";
       this.pruefungAbgebrochen = true; // Setzen Sie den Zustand auf abgebrochen
-      // Implementieren Sie hier zusätzliche Logik für den Abbruch der Prüfung
-      this.showResult = true;
+      this.showResult = true;               // Ergebnis-/Ende-Fenster wird aufgerufen mit message als Übergabe Test
     },
-
 
     formatTime(timeInSeconds) {
       const minutes = Math.floor(timeInSeconds / 60);
       const seconds = timeInSeconds % 60;
-      // Fehlende Template-Literal-Syntax korrigiert
       return `${this.padTime(minutes)}:${this.padTime(seconds)}`;
     },
 
@@ -139,12 +131,11 @@ export default {
       // Bestätigung anzeigen und Prüfung abbrechen, wenn der Benutzer zustimmt
       if (confirm('Möchten Sie die Prüfung wirklich abbrechen?')) {
         this.pruefungAbgebrochen = true; // Setzen Sie den Zustand auf abgebrochen
-        // this.$router.push('/');
         this.$router.push('/dashStudent/examListStudent');
       }
     },
 
-    toggleRecognition() {
+    toggleRecognition() {                                //starten und ,falls gestartet, beenden der Audioaufnahme
       if (this.recognition && this.isRecording) {
         this.recognition.stop();
         this.isRecording = false;
@@ -160,7 +151,7 @@ export default {
         return;
       }
 
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;    //erzeugen einer neuen Spracherkennung
       this.recognition = new SpeechRecognition();
       this.recognition.lang = 'de-DE';
       this.recognition.continuous = true;
@@ -173,9 +164,7 @@ export default {
 
       this.recognition.onend = () => {
         if (!this.isRecording) {
-          // Verwenden Sie hier die korrekte Frage-ID. Wenn die aktuelle Frage-ID durch randomFrageId bestimmt wird,
-          // verwenden Sie diese Variable, um die richtigen Lösungen abzurufen.
-          const aktuelleFrageId = this.pruefungsFragen[this.aktuelleFrageIndex].id; // Stellen Sie sicher, dass dies die tatsächliche ID der aktuellen Frage ist.
+          const aktuelleFrageId = this.pruefungsFragen[this.aktuelleFrageIndex].id; 
           this.bewerteAntwort(this.transcript, aktuelleFrageId);
         }
         console.log('Spracherkennung beendet.');
@@ -190,7 +179,7 @@ export default {
     },
 
     normalisiereTranskript(transkript) {
-      return transkript.toLowerCase().replace(/[.,-/#!$%^&*;:{}=\-_`~()]/g, "").replace(/\s+/g, ' ').trim();
+      return transkript.toLowerCase().replace(/[.,-/#!$%^&*;:{}=\-_`~()]/g, "").replace(/\s+/g, ' ').trim(); // der einfachheitshalber soll jedes gesprochen
     },
 
 
@@ -271,7 +260,7 @@ export default {
     },
 
     bewerteAntwort(transkript) {
-      // Verwenden Sie randomFrageId, um die entsprechende Frage und deren Lösungen zu finden.
+      
 
 
       const frageId = this.randomFrageId; // Nutzen Sie die aktuell ausgewählte Frage-ID
@@ -329,14 +318,11 @@ export default {
         this.aktuelleFrageIndex++;
         // Aktualisieren Sie this.randomFrageId entsprechend der neuen Auswahl
       } else {
-        // Falls alle Fragen durchlaufen wurden, hier kannst du weitere Logik einfügen
-        console.log("Alle Fragen wurden durchlaufen!");
-        // alert(this.username + " bist alle Fragen durchgegangen. Deine Punktzahl lautet: " + this.punkteAnzahl);
-        // location.reload();
-        this.showResult = true;
+        console.log("Alle Fragen wurden durchlaufen!") 
+        this.showResult = true;    // wenn showResult = true wird das Fenster für das Ende/Ergebnis der Prüfung aufgerufen 
       }
 
-      // Erzeuge ein Array mit den Zahlen von 1 bis länge unsere Fragen, falls es nicht existiert
+      // Erzeugt ein Array mit den Zahlen von 1 bis länge unsere Fragen, falls es nicht existiert
       if (!this.questionIds) {
         this.questionIds = Array.from({ length: this.pruefungsFragen.length }, (_, i) => i + 1);
       }
@@ -421,7 +407,7 @@ export default {
           width: 60%;
           height: 24px;
           border-radius: 11px;
-          margin-top: -4px; /* Adjust this value to fit the design */
+          margin-top: -4px; 
           box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
           }
           
@@ -429,8 +415,8 @@ export default {
           .microphone-icon,
           .mic-top,
           .mic-body {
-          border-color: red; // Ändert die Farbe des Rahmens in Rot
-          background-color: red; // Ändert die Farbe des Mikrofons in Rot
+          border-color: red; // Ändert die Farbe des Rahmens in Rot während Audioaufnahme läuft
+          background-color: red; 
           box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
           }
           }
