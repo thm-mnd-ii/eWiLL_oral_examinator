@@ -86,6 +86,7 @@ const authUserStore = useAuthUserStore();
 const feedback = ref<Feedback>({} as Feedback);
 const snackbarSuccess = ref(false);
 
+//
 const sendFeedback = () => {
   const user: User = authUserStore.user as User;
   feedback.value.firstName = user.username;

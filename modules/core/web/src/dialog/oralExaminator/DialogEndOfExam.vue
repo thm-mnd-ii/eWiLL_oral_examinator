@@ -1,8 +1,7 @@
 <template>
     <v-dialog v-model="showResult" max-width="700" :persistent="true">
         <v-card class="result-card">
-            <v-card-title class="result-title">Ergebnisse</v-card-title>
-            <v-card-subtitle v-if="message != null" class="result-subtitle">{{ message }}</v-card-subtitle>
+            <v-card-title v-if="message != null" class="result-subtitle">{{ message }}</v-card-title>
             <v-card-title class="result-title">Ergebnis</v-card-title>
             <v-card-text>
                 <div>
@@ -11,8 +10,6 @@
                     <p>Richtig beantwortete Fragen: {{ correctAnswers }}</p>
                     <p>Schwierigkeit: {{ giveStufe }}</p>
                     <p>Datum: {{ formattedDate }}</p>
-                    <v-textarea style="margin-top: 10px;" v-model="feedback" label="Feedback" outlined
-                        rows="1"></v-textarea>
                 </div>
             </v-card-text>
             <v-card-actions>
@@ -75,10 +72,6 @@ export default {
                 feedback: this.feedback,
             };
 
-            // Hinzufügen des neuen Ergebnisses zum Array
-            // this.ergebnisse.push(newResult);
-
-            // Überprüfen, ob das Array aktualisiert wurde
             console.log(this.ergebnisse);
         },
 
