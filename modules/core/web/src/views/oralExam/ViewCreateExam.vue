@@ -23,20 +23,17 @@
         </v-card-text>
       </v-card>
 
-      <DialogConfirmVue ref="dialogConfirm"></DialogConfirmVue>
-      <DialogEditTask ref="dialogCreateTask"></DialogEditTask>
 
       <!-- Karte für Fragenkatalog erstellen -->
-      <v-card class="card" @click="openCreateQuestionDialog">
+      <v-card class="card" @click="navigateToCreateQuestionnaire">
         <v-card-title class="title">Fragenkatalog erstellen</v-card-title>
         <v-card-text class="text">
           Hier können Sie einen neuen Fragenkatalog erstellen, um Prüfungen vorzubereiten.
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" @click="openCreateQuestionDialog">Erstellen</v-btn>
+          <v-btn color="primary" @click="navigateToCreateQuestionnaire">Erstellen</v-btn>
         </v-card-actions>
       </v-card>
-      <ViewCreateQuestion ref="dialogCreateQuestion"></ViewCreateQuestion>
 
       <!-- Karte für Prüfungsergebnisse einsehen -->
       <v-card class="card" @click="navigateToViewResults">
@@ -49,12 +46,11 @@
         </v-card-actions>
       </v-card>
     </div>
-    <DialogCreateCourse ref="dialogCreateCourse"></DialogCreateCourse>
   </BasicBackground>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref} from "vue";
 import { useRoute } from "vue-router";
 import { useAuthUserStore } from "../../stores/authUserStore";
 import { useRouter } from "vue-router";
@@ -122,22 +118,12 @@ const editCourse = () => {
 
 // Funktionen zur Navigation zu den entsprechenden Seiten
 const navigateToCreateQuestionnaire = () => {
-  console.log(route.path)
   router.push(route.path + '/createQuestion');
 };
 
 const navigateToViewResults = () => {
   router.push(route.path + '/view-results');
 };
-
-
-const openCreateQuestionDialog = () => {
-   
-  };
-
-
-
-
 
 </script>
 
