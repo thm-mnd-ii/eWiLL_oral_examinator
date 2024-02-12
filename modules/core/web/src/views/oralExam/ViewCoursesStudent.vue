@@ -1,29 +1,27 @@
 <!-- eslint-disable vue/valid-v-slot -->
 <template>
+  <!-- Container für die Liste der Kurse eines Studenten -->
   <div class="container">
     <CoursesListStudent ref="coursesListStudent"></CoursesListStudent>
   </div>
-  <DialogCreateCourse ref="dialogCreateCourse"></DialogCreateCourse>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { useRouter } from "vue-router";
-import DialogCreateCourse from "../../dialog/DialogCreateCourse.vue";
 import CoursesListStudent from "../../components/oralExaminator/CoursesListStudent.vue";
 import { useAuthUserStore } from "../../stores/authUserStore";
 import GlobalRoles from "../../enums/GlobalRoles";
 
+// Authentifizierung Benutzer Store
 const authUserStore = useAuthUserStore();
-const router = useRouter();
-
-const dialogCreateCourse = ref<typeof DialogCreateCourse>();
+// Referenz auf die Liste der Kurse eines Studenten
 const coursesListStudent = ref<typeof CoursesListStudent>();
 
 const isAdmin = ref(false);
 const isUser = ref();
 
 onMounted(() => {
+  // Lädt die Prüfungen des Studenten
   coursesListStudent.value?.loadCourses();
 
   isAdmin.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_ADMIN)!;

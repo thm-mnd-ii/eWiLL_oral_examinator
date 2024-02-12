@@ -1,4 +1,5 @@
 <template>
+  //Selbes Prinizip, wie bei ViewCourseSignUpDozent
   <div class="container">
     <v-card class="card">
       <v-card-item>

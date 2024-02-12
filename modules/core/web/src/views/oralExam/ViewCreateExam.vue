@@ -1,6 +1,7 @@
 <template>
   <BasicBackground>
     <div class="course">
+      <!-- Seite um in der jeweiligen Prüfung, die Fragen und Ergebnisse einzusehen -->
       <v-card>
         <v-card-title class="align-items-center">
           <h3 class="headline mb-0">{{ course?.name }}</h3>
@@ -23,9 +24,10 @@
           </div>
         </v-card-text>
       </v-card>
+      <!-- Dialog zum Erstellen eines Kurses -->
       <DialogCreateCourse ref="dialogCreateCourse"></DialogCreateCourse>
 
-
+      <!-- Karte für das Ansehen des Fragekatalogs -->
       <v-card class="card" @click="navigateToCreateQuestionnaire">
         <v-card-title class="title">Fragenkatalog einsehen</v-card-title>
         <v-card-text class="text">
@@ -36,6 +38,7 @@
         </v-card-actions>
       </v-card>
 
+      <!-- Karte für das Ansehen der Prüfungsergebnisse -->
       <v-card class="card" @click="navigateToViewResults">
         <v-card-title class="title">Prüfungsergebnisse einsehen</v-card-title>
         <v-card-text class="text">
@@ -67,13 +70,13 @@ const router = useRouter();
 const authUserStore = useAuthUserStore();
 const taskList = ref<typeof TaskList>();
 const course = ref<CoursePL>();
+
+// Kurs ID und Benutzer ID
 const courseId = ref(Number(route.params.createExamId));
 const userId = ref(authUserStore.auth.user?.id);
 const courseRole = ref("");
+
 const dialogCreateCourse = ref<typeof DialogCreateCourse>();
-
-
-
 
 
 onMounted(() => {
@@ -93,6 +96,7 @@ onMounted(() => {
   });
 });
 
+// Funktion zum Bearbeiten/Löschen der Prüfung
 const editCourse = () => {
   console.log("edit");
   if (dialogCreateCourse.value) {

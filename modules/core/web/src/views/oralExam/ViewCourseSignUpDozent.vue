@@ -1,4 +1,5 @@
 <template>
+  <!-- Container für die Kurseinschreibung -->
   <div class="container">
     <v-card class="card">
       <v-card-item>
@@ -39,6 +40,7 @@
   const snackbarError = ref(false);
   
   onMounted(() => {
+      // Lädt den Kurs, sobald die Komponente montiert ist
     courseService
       .getCourse(courseId.value)
       .then((response) => {
@@ -50,12 +52,14 @@
   });
   
   const signup = () => {
+    // Führt die Kurseinschreibung durc
     if (userId.value != undefined) {
       courseService
         .joinCourse(courseId.value, key.value, userId.value)
         .then((response) => {
           if (response.status == 200) {
-            router.push("/dashDozent/coursesDozent/" + courseId.value); //Pfad zur ausgewählten Prüfung nach eingabe des Passworts
+            // Navigiert zur Kursseite nach erfolgreicher Einschreibung
+            router.push("/dashDozent/coursesDozent/" + courseId.value);
           }
         })
         .catch((error) => {
