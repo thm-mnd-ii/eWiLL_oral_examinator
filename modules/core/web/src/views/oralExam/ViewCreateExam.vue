@@ -34,7 +34,7 @@
           Sie haben hier die Möglichkeit, den Fragenkatalog einzusehen.
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" @click="navigateToCreateQuestionnaire">Erstellen</v-btn>
+          <v-btn color="primary" @click="navigateToCreateQuestionnaire">Einsehen</v-btn>
         </v-card-actions>
       </v-card>
 
