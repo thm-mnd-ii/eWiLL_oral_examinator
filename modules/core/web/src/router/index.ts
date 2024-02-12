@@ -26,7 +26,7 @@ import ViewOralExam from "@/views/oralExam/ViewOralExam.vue";
 import ViewCourseSignUpDozent from "@/views/oralExam/ViewCourseSignUpDozent.vue";
 import ViewCourseSignUpStudent from "@/views/oralExam/ViewCourseSignUpStudent.vue";
 import ViewDozentResults from "@/views/oralExam/ViewDozentResults.vue";
-
+import ViewFragenEinsehen from "../views/oralExam/ViewFragenEinsehen.vue";
 
 import authService from "@/services/auth.service";
 
@@ -174,6 +174,12 @@ const router = createRouter({
       name: "ViewCourseSignupDozent",
       component: ViewCourseSignUpDozent,
     },
+
+    {
+      path: "/dashStudent/fragenEinsehen",
+      name: "ViewFragenEinsehen",
+      component: ViewFragenEinsehen,
+    },
   ],
 });
 
@@ -210,6 +216,7 @@ router.beforeEach(async (to, from, next) => {
     "ViewOralExam",
     "ViewCourseSignUpStudent",
     "ViewCourseSignupDozent",
+    "ViewFragenEinsehen",
   ];
   const adminRequired = !nonAdminPages.includes(to.name as string);
   const role = localStorage.getItem("role");

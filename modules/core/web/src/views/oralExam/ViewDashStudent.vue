@@ -4,16 +4,33 @@
     <!-- Obere V-Karten -->
     <v-card class="card">
       <v-card-title class="card-title">
-        <span>Alle Prüfungen</span>
+        <span>Prüfungen</span>
       </v-card-title>
       <v-card-subtitle class="card-subtitle">
         <span>Übersicht aller verfügbaren Prüfungen</span>
       </v-card-subtitle>
       <v-card-text class="card-text">
-        <p>Hier findest du eine Auflistung aller verfügbaren Prüfungen.</p>
+        <p>Hier findest du eine Auflistung aller verfügbaren Prüfungen, in denen du eingetragen bist.</p>
       </v-card-text>
       <v-card-actions class="card-action">
         <v-btn @click="redirectToDozentCourses">ZU DEN PRÜFUNGEN</v-btn>
+      </v-card-actions>
+    </v-card>
+
+    <v-card class="card">
+      <v-card-title class="card-title">
+        <span>Fragen einsehen</span>
+      </v-card-title>
+      <v-card-subtitle class="card-subtitle">
+        <span>Übersicht aller vorhandenen Fragen</span>
+      </v-card-subtitle>
+      <v-card-text class="card-text">
+        <p>Hier findest du einen Überblick aller verfügbaren Fragen des aktuellen Semesters, um dich so besser auf die
+          mündlichen Prüfungen vorbereiten zu können.</p>
+      </v-card-text>
+
+      <v-card-actions>
+        <v-btn @click="redirectToViewFragenEinsehen">ZU DEM FRAGENKATALOG</v-btn>
       </v-card-actions>
     </v-card>
 
@@ -80,6 +97,11 @@ const sendFeedback = () => {
   });
 
 };
+
+const redirectToViewFragenEinsehen = () => {
+router.push( route.path + '/fragenEinsehen');
+
+}
 const redirectToDozentCourses = () => {
 router.push( route.path + '/examListStudent');
 };

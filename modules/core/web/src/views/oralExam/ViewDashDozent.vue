@@ -9,7 +9,7 @@
         <span>Übersicht aller Schwierigkeitsgraden</span>
       </v-card-subtitle>
       <v-card-text class="card-text">
-        <p>Hier geht es zur Verwaltung der Prüfungen.</p>
+        <p>Hier geht es zur Prüfungsverwaltung.</p>
         <br />
       </v-card-text>
 
@@ -21,9 +21,9 @@
 
     <v-card class="card">
       <v-card-title class="card-title">Feedback Abgeben</v-card-title>
-      <v-card-subtitle class="card-subtitle">Bewertung | Feedback | Lernstand | Aktivität</v-card-subtitle>
-      <v-card-text class="card-text"> In ihrem persönlich Dashboard behalten Sie immer die Übersicht. Hier werden Ihnen
-        alle Informationen zu Bewertungen, Feedback, Lernstand oder Aktivitäten angezeigt. </v-card-text>
+      <v-card-subtitle class="card-subtitle">Feedback</v-card-subtitle>
+      <v-card-text class="card-text"> In ihrem persönlich Dashboard behalten Sie immer die Übersicht. Hier können Sie ein
+        Feedback abgeben. </v-card-text>
       <v-card-actions>
         <v-btn to="/feedbackReport">FEEDBACK EINREICHEN</v-btn>
       </v-card-actions>

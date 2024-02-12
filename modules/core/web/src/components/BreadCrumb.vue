@@ -54,6 +54,8 @@ const wordReplacement = (word: string) => {
       return "Prüfungen";
     case "view-results":
       return "Ergebnisse anzeigen";
+    case "fragenEinsehen":
+      return "Fragen einsehen";
     default:
       return word;
   }

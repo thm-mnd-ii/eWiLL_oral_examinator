@@ -76,7 +76,7 @@ const fetchCourseData = () => {
 }
 
 .mb-3 {
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
   margin-bottom: 20px;
 }

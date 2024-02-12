@@ -26,22 +26,20 @@
       <DialogCreateCourse ref="dialogCreateCourse"></DialogCreateCourse>
 
 
-      <!-- Karte für Fragenkatalog erstellen -->
       <v-card class="card" @click="navigateToCreateQuestionnaire">
-        <v-card-title class="title">Fragenkatalog erstellen</v-card-title>
+        <v-card-title class="title">Fragenkatalog einsehen</v-card-title>
         <v-card-text class="text">
-          Hier können Sie einen neuen Fragenkatalog erstellen, um Prüfungen vorzubereiten.
+          Sie haben hier die Möglichkeit, den Fragenkatalog einzusehen.
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" @click="navigateToCreateQuestionnaire">Erstellen</v-btn>
         </v-card-actions>
       </v-card>
 
-      <!-- Karte für Prüfungsergebnisse einsehen -->
       <v-card class="card" @click="navigateToViewResults">
         <v-card-title class="title">Prüfungsergebnisse einsehen</v-card-title>
         <v-card-text class="text">
-          Hier können Sie Ihre Prüfungsergebnisse einsehen und analysieren.
+          Hier können Sie die Prüfungsergebnisse Ihrer Studenten einsehen und analysieren.
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" @click="navigateToViewResults">Ansehen</v-btn>
