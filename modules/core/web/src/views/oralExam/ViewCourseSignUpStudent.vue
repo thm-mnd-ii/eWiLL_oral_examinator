@@ -12,7 +12,7 @@
 
       <v-text-field v-model="key" label="Einschreibeschlüssel" class="textfield" variant="solo"></v-text-field>
       <v-card-actions>
-        <v-btn class="button" color="warning" @click="signup">Einschreiben</v-btn>
+        <v-btn class="button" color="warning" @click="signup">Einschreiben</v-btn>     FUNKTIOn
       </v-card-actions>
     </v-card>
   </div>
@@ -56,7 +56,7 @@
         .joinCourse(courseId.value, key.value, userId.value)
         .then((response) => {
           if (response.status == 200) {
-            router.push("/dashStudent/examListStudent/ " + courseId.value);
+            router.push("/dashStudent/examListStudent/ " + courseId.value); //Pfad zur ausgewählten Prüfung nach eingabe des Passworts
           }
         })
         .catch((error) => {

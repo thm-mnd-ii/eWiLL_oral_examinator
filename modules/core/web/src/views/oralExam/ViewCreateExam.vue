@@ -68,7 +68,6 @@ import BasicBackground from "@/components/BasicBackground.vue";
 const route = useRoute();
 const router = useRouter();
 const authUserStore = useAuthUserStore();
-
 const taskList = ref<typeof TaskList>();
 const course = ref<CoursePL>();
 

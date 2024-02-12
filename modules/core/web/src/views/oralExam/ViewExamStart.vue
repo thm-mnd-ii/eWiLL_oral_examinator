@@ -67,7 +67,7 @@ const fetchCourseData = () => {
   justify-content: center;
   align-items: center;
   height: 100vh; /* Die Karte wird auf die gesamte Bildschirmhöhe zentriert */
-  padding-bottom: 50vh; /* Abstand von oben erhöhen */
+  padding-bottom: 50vh; 
 }
 
 .card {
@@ -97,6 +97,6 @@ const fetchCourseData = () => {
 
 .start-btn {
   width: 100%; /* Button auf volle Breite der Karte setzen */
-  font-size: 1.2rem; /* Größere Schriftgröße für den Button */
+  font-size: 1.2rem; 
 }
 </style>
