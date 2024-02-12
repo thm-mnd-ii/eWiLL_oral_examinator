@@ -11,6 +11,7 @@
             <v-icon size="x-large">mdi-cog</v-icon>
             <v-tooltip activator="parent" location="bottom">Kurs bearbeiten</v-tooltip>
           </v-btn>
+
         </v-card-title>
         <v-card-text>
           <p>{{ course?.description }}</p>
@@ -22,6 +23,7 @@
           </div>
         </v-card-text>
       </v-card>
+      <DialogCreateCourse ref="dialogCreateCourse"></DialogCreateCourse>
 
 
       <!-- Karte für Fragenkatalog erstellen -->
@@ -102,9 +104,8 @@ onMounted(() => {
   });
 });
 
-
-
 const editCourse = () => {
+  console.log("edit");
   if (dialogCreateCourse.value) {
     dialogCreateCourse.value.openDialog(courseId.value).then(() => {
       courseService.getCourse(courseId.value).then((response) => {

@@ -1,110 +1,94 @@
 <template>
-  <!-- Responsive content as grid base 2x2 -->
-  <div class="container">
-    <!-- Obere V-Cards -->
-    <v-card class="card">
-      <v-card-title class="card-title">
-        <span>Alle Kurse</span>
-      </v-card-title>
-      <v-card-subtitle class="card-subtitle">
-        <span>Auflistung aller verfübaren Kurse</span>
-      </v-card-subtitle>
-      <v-card-text class="card-text">
-        <p>Hier siehst du alle Kurse die dir zur Verfügung stehen. Du kannst dich in jeden Kurs einschreiben und die Kursinhalte nutzen.</p>
-      </v-card-text>
-      <v-card-actions class="card-action">
-        <v-btn to="/course">ZU DEN KURSEN</v-btn>
-      </v-card-actions>
-    </v-card>
+  <div class="home-container">
+    <header class="hero-section">
+      <v-card class="welcome-card">
+        <h1>Willkommen bei Oral Examinator</h1>
+        <p>Bereite dich effektiv auf deine mündlichen Prüfungen im Fach Datenmanagement vor – mit Simulationen, die auf
+          die Lehrpläne der THM abgestimmt sind.</p>
+      </v-card>
+    </header>
 
-    <v-card class="card">
-      <v-card-title class="card-title">
-        <span>Meine Kurse</span>
-      </v-card-title>
-      <v-card-subtitle class="card-subtitle">
-        <span>Übersicht über deine Kurse</span>
-      </v-card-subtitle>
-      <v-card-text class="card-text">
-        <p>Hier siehst du alle Kurse in denen du dieses Semester eingetragen bist.</p>
-        <br />
-        <v-card variant="outlined" class="newscard">
-          <v-card-title class="newscard_title">Neuigkeiten:</v-card-title>
-          <v-card-text>
-            <p v-for="item in test" :key="item">{{ item }}</p>
-          </v-card-text>
-        </v-card>
-      </v-card-text>
+    <section class="features-section">
+      <v-card class="features-card">
+        <h2>Was bietet der Oral Examinator?</h2>
+        <div class="features">
+          <v-card class="feature">
+            <h3>Realitätsnahe Simulationen</h3>
+            <p>Trainiere unter Bedingungen, die echten Prüfungssituationen nachempfunden sind.</p>
+          </v-card>
+          <v-card class="feature">
+            <h3>Interaktive Lernkontrollen</h3>
+            <p>Überprüfe dein Verständnis mit interaktiven Aufgaben und erhalte sofortiges Feedback zu deinen Lösungen.
+            </p>
+          </v-card>
+          <v-card class="feature">
+            <h3>Flexible Zeitgestaltung</h3>
+            <p>Übe wann immer es in deinen Zeitplan passt – 24/7, ganz nach deinem eigenen Rhythmus.</p>
+          </v-card>
+        </div>
+      </v-card>
+    </section>
 
-      <v-card-actions>
-        <v-btn to="/course">ZU MEINEN KURSEN</v-btn>
-      </v-card-actions>
-    </v-card>
-
-    <!-- Untere V-Cards -->
-    <v-card class="card">
-      <v-card-title class="card-title">Playground</v-card-title>
-      <v-card-subtitle class="card-subtitle">Dein ganz persönlicher Bereich zum Modellieren</v-card-subtitle>
-      <v-card-text class="card-text">Der Playground stellt dir verschiedene Modellierungsarten zu Verfügung. Im aktuellen Entwicklungsstand besteht nur die Möglichkeit SERM Modelle zu erstellen. Du kannst eine belibige Anzahl an Modellen Speicher und sie von überall aufrufen und bearbeiten.</v-card-text>
-      <v-card-actions class="card-action">
-        <v-btn to="/modeling">ZUM PLAYGROUND</v-btn>
-      </v-card-actions>
-    </v-card>
-
-    <v-card class="card">
-      <v-card-title class="card-title">Mein Dashboard</v-card-title>
-      <v-card-subtitle class="card-subtitle">Bewertung | Feedback | Lernstand | Aktivität</v-card-subtitle>
-      <v-card-text class="card-text"> In deinem persönlich Dashboard behältst du immer die Übersicht. Hier werden dir alle Informationen zu Bewertungen, Feedback, Lernstand oder Aktivität angezeigt. </v-card-text>
-      <v-card-text class="card-text">
-        <v-card variant="outlined" class="newscard">
-          <v-card-title class="newscard_title">Neuigkeiten:</v-card-title>
-          <v-card-text>
-            <p v-for="item in test" :key="item">{{ item }}</p>
-          </v-card-text>
-        </v-card>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn to="/dashboard">ZUM DASHBOARD</v-btn>
-      </v-card-actions>
-    </v-card>
+    <section class="cta-section">
+      <v-card class="cta-card">
+        <h2>Bist du bereit, deine Prüfungsvorbereitung auf das nächste Level zu bringen?</h2>
+        <v-btn large color="success" @click="redirectToViewDashStudent">Jetzt loslegen</v-btn>
+      </v-card>
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-const test = ["News 1", "News 2"];
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const redirectToViewDashStudent = () => {
+  router.push('/dashStudent');
+};
 </script>
 
-<style scoped lang="scss">
-.container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  row-gap: 2rem;
-  column-gap: 1.5rem;
-  grid-template-areas:
-    "card card"
-    "card card";
-  padding: 2.5rem 2rem;
+<style scoped>
+/* Rest des Styles bleibt unverändert */
+
+/* Zusätzlicher Style für VCards */
+.welcome-card,
+.features-card,
+.cta-card {
+  text-align: center;
+  background-color: #ffffff;
+
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 80%;
   background-color: rgb(var(--v-theme-primary));
+  border-radius: 35px;
+  box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
+
 }
 
-.card {
-  // fit to parent
-  width: 100%;
-  height: 100%;
-  // center content
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.feature {
+  border: none;
+  /* Entfernt die vorherige Karten-Style-Definition */
+  margin: 1rem;
+  padding: 1rem;
+  text-align: center;
+  background-color: #f8f8f8;
+  /* Leichtes Grau als Hintergrund für Feature-Karten */
+  transition: background-color 0.3s ease;
+  /* Fügt eine sanfte Übergangsanmation hinzu */
 }
 
-.card-title {
-  padding-bottom: 0;
+/* Anpassungen für responsive Design */
+@media (max-width: 768px) {
+  .features {
+    flex-direction: column;
+  }
 }
 
-.card-subtitle {
-  color: rgb(var(--v-theme-primary-dark));
-}
-
-.newscard_title {
-  color: rgb(var(--v-theme-primary-dark));
+.feature:hover {
+  background-color: #dfede0;
+  /* Das leichte Grau für den Hover-Zustand */
 }
 </style>

@@ -1,16 +1,20 @@
 <template>
-  <BasicBackground> 
+  <BasicBackground>
     <v-card class="card">
       <v-card-title class="title">
         <span>Oral Examinator</span>
 
         <!-- <span> <IconEWiLL /> </span> -->
       </v-card-title>
-      <v-card-text class="text"> Herzlich willkommen auf Oral Examinator, deiner Plattform für simulierte mündliche Prüfungen im Fach Datenmanagement. Wir bieten dir eine einzigartige Möglichkeit, dein Wissen zu testen und deine mündlichen Präsentationsfähigkeiten zu schärfen. </v-card-text>
+      <v-card-text class="text"> Herzlich willkommen auf Oral Examinator, deine Plattform für simulierte mündliche
+        Prüfungen im Fach Datenmanagement. Wir bieten dir eine einzigartige Möglichkeit, dein Wissen zu testen und deine
+        mündlichen Präsentationsfähigkeiten zu schärfen. </v-card-text>
       <v-card-actions>
         <v-spacer>
-          <v-btn v-if="isAdmin" variant="flat" color="primary-dark" to="/dashDozent"> Hier geht's zu deinem Dashboard </v-btn>
-          <v-btn v-if="isUser" variant="flat" color="primary-dark" to="/dashStudent"> Hier geht's zu deinem Dashboard </v-btn>
+          <v-btn v-if="isAdmin" variant="flat" color="primary-dark" to="/dashDozent"> Hier geht's zu der
+            Startseite </v-btn>
+          <v-btn v-if="isUser" variant="flat" color="primary-dark" to="/dashStudent"> Hier geht's zu der
+            Startseite </v-btn>
         </v-spacer>
       </v-card-actions>
     </v-card>
@@ -42,6 +46,8 @@ isAdmin.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_ADMIN)!;
   margin: auto;
   padding: 20px;
   text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
 }
 
 .title {
@@ -52,6 +58,7 @@ isAdmin.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_ADMIN)!;
   align-items: center;
   justify-items: stretch;
   margin-bottom: 15px;
+  
 }
 
 .text {
@@ -61,5 +68,6 @@ isAdmin.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_ADMIN)!;
   grid-template-columns: repeat(1, 1fr);
   align-items: center;
   justify-items: stretch;
+  
 }
 </style>

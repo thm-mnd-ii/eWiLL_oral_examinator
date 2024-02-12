@@ -1,14 +1,11 @@
 <!-- eslint-disable vue/valid-v-slot -->
 <template>
   <div class="container">
-    <v-text-field v-model="search" label="Search" density="compact" prepend-icon="mdi-magnify" variant="underlined" hide-details class="search-bar"></v-text-field>
-    <v-row>
-      <v-checkbox v-model="checkboxActive" label="Nur aktive Kurse anzeigen" @change="filterCourseList"></v-checkbox>
-      <v-checkbox v-model="checkboxFriedberg" label="Friedberg" @change="filterCourseList" @click="checkboxGießen = false"></v-checkbox>
-      <v-checkbox v-model="checkboxGießen" label="Gießen" @change="filterCourseList" @click="checkboxFriedberg = false"></v-checkbox>
-      <v-checkbox v-model="checkboxParticipation" label="Teilnahme" @change="filterCourseList"></v-checkbox>
-    </v-row>
-    <v-data-table :headers="headers" :items="displayedCourses" item-value="name" class="elevation-1" :search="search" density="default" height="480px" @click:row="openCourseOrSignUp">
+    <v-text-field v-model="search" label="Search" density="compact" prepend-icon="mdi-magnify" variant="underlined"
+      hide-details class="search-bar"></v-text-field>
+
+    <v-data-table :headers="headers" :items="displayedCourses" item-value="name" class="elevation-1" :search="search"
+      density="default" height="480px" @click:row="openCourseOrSignUp">
       <template #item.item.course="{ item }">
         <v-icon v-if="item.course.active == false" icon="mdi-close-circle" color="error"></v-icon>
         <v-icon v-if="item.course.active == true" icon="mdi-check-circle" color="success"></v-icon>

@@ -32,7 +32,7 @@ const search = ref("");
 const headers = [
   { title: "Semester", align: "start", key: "course.semester.name" },
   { title: "Aktiv", align: "start", key: "course.active" },
-  { title: "Kursname", align: "start", key: "course.name" },
+  { title: "Prüfungen", align: "start", key: "course.name" },
   { title: "Standort", align: "start", key: "course.location" },
   { title: "Teilnahme", align: "start", key: "member" },
 ];
@@ -50,7 +50,7 @@ const loadCourses = () => {
       .getAllCourses(userId)
       .then((data) => {
         // Filtern der Kurse nach dem Kursnamen "Datenbank"
-        const databaseCourses = data.filter(course => course.course.name.startsWith("Datenbankmanagement"));
+        const databaseCourses = data.filter(course => course.course.name.startsWith("Datenmanagement (Stufe"));
         allCourses.value = databaseCourses;
         displayedCourses.value = allCourses.value;
       })
@@ -67,14 +67,6 @@ const loadCourses = () => {
 // id abfangen
 const openCourseOrSignUp = (row: any, item: any) => {
   let roleId = authUserStore.auth.user?.roles[0]; // Greife auf den ersten Eintrag im Array zu
-  console.log(roleId); // Gibt 'ROLE_ADMIN' aus
-  console.log(item)
-  console.log(item.item)
-  console.log(item.item.course.id)
-  console.log(route.path)
-  console.log(item.member)
-  console.log(item.item.member)
-  
   
   if (item.item.member == false) router.push(route.path +'/' + item.item.course.id+ "/signupDozent");
 

@@ -1,4 +1,3 @@
-
 <template>
   <!-- Responsive content as grid base 2x2 -->
   <div class="container">
@@ -7,10 +6,10 @@
         <span>Prüfungen</span>
       </v-card-title>
       <v-card-subtitle class="card-subtitle">
-        <span>Übersicht aller Schwierigkeitsgeraden</span>
+        <span>Übersicht aller Schwierigkeitsgraden</span>
       </v-card-subtitle>
       <v-card-text class="card-text">
-        <p>Hier sehen Sie alle Prüfungen, um die Prüfungen zu verwalten.</p>
+        <p>Hier geht es zur Verwaltung der Prüfungen.</p>
         <br />
       </v-card-text>
 
@@ -23,8 +22,8 @@
     <v-card class="card">
       <v-card-title class="card-title">Feedback Abgeben</v-card-title>
       <v-card-subtitle class="card-subtitle">Bewertung | Feedback | Lernstand | Aktivität</v-card-subtitle>
-      <v-card-text class="card-text"> In ihrem persönlich Dashboardbehalten Sie immer die Übersicht. Hier werden Ihnen
-        alle Informationen zu Bewertungen, Feedback, Lernstand oder Aktivität angezeigt. </v-card-text>
+      <v-card-text class="card-text"> In ihrem persönlich Dashboard behalten Sie immer die Übersicht. Hier werden Ihnen
+        alle Informationen zu Bewertungen, Feedback, Lernstand oder Aktivitäten angezeigt. </v-card-text>
       <v-card-actions>
         <v-btn to="/feedbackReport">FEEDBACK EINREICHEN</v-btn>
       </v-card-actions>
@@ -32,7 +31,7 @@
 
     <v-card class="card">
       <v-card-title class="card-title">Feedback einsehen</v-card-title>
-      <v-card-text class="card-text"> Hier Sie alle von Nutzern eingereichtes Feedback </v-card-text>
+      <v-card-text class="card-text"> Hier Sie alle von Nutzern eingereichtes Feedback. </v-card-text>
       <v-card-actions>
         <v-btn to="/feedbackOverview">FEEDBACK EINSEHEN</v-btn>
       </v-card-actions>
@@ -76,6 +75,8 @@ const redirectToDozentCourses = () => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
 }
 
 .card-title {

@@ -1,10 +1,6 @@
-// import ergebnisseArray from "../dialog/oralExaminator/DialogEndOfExam.vue";
 
 export const Fragenkatalog = {
     
-    // setErgniss() {
-    //     console.log(ergebnisseArray);
-    // },
 
     dataStufe1() {
         return {
@@ -295,40 +291,40 @@ export const Fragenkatalog = {
             punkteAnzahl: 0,
             username: null,
             fragenText: [
-                
-                        { id: 1, frage: "Wie trägt effektives Datenmanagement zum Unternehmenserfolg bei?" },
-                        { id: 2, frage: "Erklären Sie den Lebenszyklus von Daten in einem Unternehmen." },
-                        { id: 3, frage: "Welche Rolle spielen Datenbanken in Big Data und Analytics?" },
-                        { id: 4, frage: "Wie funktioniert die Datenreplikation in verteilten Datenbanksystemen?" },
-                        { id: 5, frage: "Wie beeinflusst künstliche Intelligenz das Datenmanagement?" },
-                        { id: 6, frage: "Wie funktionieren Graphdatenbanken und für welche Anwendungen sind sie geeignet?" },
-                        { id: 7, frage: "Wie kann man die Leistung einer Datenbank optimieren?" },
-                        { id: 8, frage: "Wie können Daten effektiv archiviert und gesichert werden?" },
-                        { id: 9, frage: "Wie kann man Daten effizient zwischen verschiedenen Systemen migrieren?" },
-                        { id: 10, frage: "Wie kann man mit veralteten oder nicht mehr unterstützten Datenbanken umgehen?" },
-                        { id: 11, frage: "Wie implementiert man ein mehrdimensionales Datenmodell in einem Data Warehouse und welche Herausforderungen können dabei auftreten?" },
-                        { id: 12, frage: "Erklären Sie die Implementierung und Verwaltung von Datenpartitionierungsstrategien in großen verteilten Datenbanken." },
-                        { id: 13, frage: "Diskutieren Sie die Techniken und Herausforderungen der Datenintegration aus heterogenen Quellen, einschließlich verschiedener Datenformate und Strukturen." },
-                        { id: 14, frage: "Wie können komplexe Geschäftslogiken und Datenvalidierungsregeln in Datenbankprozessen effektiv implementiert werden?" },
-                        { id: 15, frage: "Erörtern Sie die Architektur und Funktionsweise von In-Memory-Datenbanken und deren Einsatz im Kontext von Echtzeitanalysen." },
-                        { id: 16, frage: "Beschreiben Sie den Prozess der Entwicklung und Umsetzung einer umfassenden Daten-Governance-Strategie in einem multinationalen Unternehmen." },
-                        { id: 17, frage: "Wie optimiert man Abfrageleistungen in einem Data Warehouse, das Petabytes an Daten enthält?" },
-                        { id: 18, frage: "Diskutieren Sie die technischen Herausforderungen und Lösungen bei der Skalierung von NoSQL-Datenbanken für globale Applikationen." },
-                        { id: 19, frage: "Erklären Sie die Konzeption und Implementierung einer Disaster-Recovery-Strategie für kritische Unternehmensdatenbanken." },
-                        { id: 20, frage: "Wie kann maschinelles Lernen zur Vorhersage und Automatisierung von Datenbankwartungsarbeiten eingesetzt werden?" },
-                        { id: 21, frage: "Diskutieren Sie die Auswirkungen von Quantencomputing auf die Zukunft des Datenmanagements und der Datenverarbeitung." },
-                        { id: 22, frage: "Entwickeln Sie einen detaillierten Plan zur Migration von Daten aus älteren Systemen in moderne Cloud-basierte Datenbanklösungen." },
-                        { id: 23, frage: "Wie können fortschrittliche Techniken der Datenverschlüsselung und des Datenschutzes in großen, verteilten Datenbanksystemen implementiert werden?" },
-                        { id: 24, frage: "Erörtern Sie die Herausforderungen und Lösungen bei der Integration von IoT-Datenströmen in bestehende Unternehmensdatenbanken und -systeme." },
-                        { id: 25, frage: "Wie kann man eine umfassende Strategie zur Datenarchivierung und -löschung entwickeln, die sowohl gesetzlichen Anforderungen als auch Unternehmensbedürfnissen entspricht?" },
-                        { id: 26, frage: "Erklären Sie die Konzepte und Herausforderungen bei der Implementierung von Cross-Database-Queries in einer polyglotten Persistenzumgebung." },
-                        { id: 27, frage: "Diskutieren Sie die Anwendung von Künstlicher Intelligenz zur Verbesserung der Datenintegrität und -validierung in großen Datenbanken." },
-                        { id: 28, frage: "Wie kann man ein leistungsfähiges und sicheres Datenzugriffs- und Berechtigungsmodell in einer komplexen Unternehmensumgebung implementieren?" },
-                        { id: 29, frage: "Erörtern Sie die Herausforderungen und Lösungen bei der Datenmigration zwischen verschiedenen Cloud-Diensten und -Plattformen." },
-                        { id: 30, frage: "Wie können fortgeschrittene Techniken der Kausalanalyse in großen Datensätzen angewendet werden, um tiefere Einblicke und Verständnis zu gewinnen?" },
-                        { id: 31, frage: "Beschreiben Sie die Entwicklung und Anwendung von benutzerdefinierten Erweiterungen in SQL zur Unterstützung spezifischer Geschäftsanforderungen." },
-                        { id: 32, frage: "Diskutieren Sie die Implementierung von Multi-Model-Datenbanken und deren Einsatz in komplexen Anwendungsfällen." }
-                        ],
+        
+                { id: 1, frage: "Wie trägt effektives Datenmanagement zum Unternehmenserfolg bei?" },
+                { id: 2, frage: "Erklären Sie den Lebenszyklus von Daten in einem Unternehmen." },
+                { id: 3, frage: "Welche Rolle spielen Datenbanken in Big Data und Analytics?" },
+                { id: 4, frage: "Wie funktioniert die Datenreplikation in verteilten Datenbanksystemen?" },
+                { id: 5, frage: "Wie beeinflusst künstliche Intelligenz das Datenmanagement?" },
+                { id: 6, frage: "Wie funktionieren Graphdatenbanken und für welche Anwendungen sind sie geeignet?" },
+                { id: 7, frage: "Wie kann man die Leistung einer Datenbank optimieren?" },
+                { id: 8, frage: "Wie können Daten effektiv archiviert und gesichert werden?" },
+                { id: 9, frage: "Wie kann man Daten effizient zwischen verschiedenen Systemen migrieren?" },
+                { id: 10, frage: "Wie kann man mit veralteten oder nicht mehr unterstützten Datenbanken umgehen?" },
+                { id: 11, frage: "Wie implementiert man ein mehrdimensionales Datenmodell in einem Data Warehouse und welche Herausforderungen können dabei auftreten?" },
+                { id: 12, frage: "Erklären Sie die Implementierung und Verwaltung von Datenpartitionierungsstrategien in großen verteilten Datenbanken." },
+                { id: 13, frage: "Diskutieren Sie die Techniken und Herausforderungen der Datenintegration aus heterogenen Quellen, einschließlich verschiedener Datenformate und Strukturen." },
+                { id: 14, frage: "Wie können komplexe Geschäftslogiken und Datenvalidierungsregeln in Datenbankprozessen effektiv implementiert werden?" },
+                { id: 15, frage: "Erörtern Sie die Architektur und Funktionsweise von In-Memory-Datenbanken und deren Einsatz im Kontext von Echtzeitanalysen." },
+                { id: 16, frage: "Beschreiben Sie den Prozess der Entwicklung und Umsetzung einer umfassenden Daten-Governance-Strategie in einem multinationalen Unternehmen." },
+                { id: 17, frage: "Wie optimiert man Abfrageleistungen in einem Data Warehouse, das Petabytes an Daten enthält?" },
+                { id: 18, frage: "Diskutieren Sie die technischen Herausforderungen und Lösungen bei der Skalierung von NoSQL-Datenbanken für globale Applikationen." },
+                { id: 19, frage: "Erklären Sie die Konzeption und Implementierung einer Disaster-Recovery-Strategie für kritische Unternehmensdatenbanken." },
+                { id: 20, frage: "Wie kann maschinelles Lernen zur Vorhersage und Automatisierung von Datenbankwartungsarbeiten eingesetzt werden?" },
+                { id: 21, frage: "Diskutieren Sie die Auswirkungen von Quantencomputing auf die Zukunft des Datenmanagements und der Datenverarbeitung." },
+                { id: 22, frage: "Entwickeln Sie einen detaillierten Plan zur Migration von Daten aus älteren Systemen in moderne Cloud-basierte Datenbanklösungen." },
+                { id: 23, frage: "Wie können fortschrittliche Techniken der Datenverschlüsselung und des Datenschutzes in großen, verteilten Datenbanksystemen implementiert werden?" },
+                { id: 24, frage: "Erörtern Sie die Herausforderungen und Lösungen bei der Integration von IoT-Datenströmen in bestehende Unternehmensdatenbanken und -systeme." },
+                { id: 25, frage: "Wie kann man eine umfassende Strategie zur Datenarchivierung und -löschung entwickeln, die sowohl gesetzlichen Anforderungen als auch Unternehmensbedürfnissen entspricht?" },
+                { id: 26, frage: "Erklären Sie die Konzepte und Herausforderungen bei der Implementierung von Cross-Database-Queries in einer polyglotten Persistenzumgebung." },
+                { id: 27, frage: "Diskutieren Sie die Anwendung von Künstlicher Intelligenz zur Verbesserung der Datenintegrität und -validierung in großen Datenbanken." },
+                { id: 28, frage: "Wie kann man ein leistungsfähiges und sicheres Datenzugriffs- und Berechtigungsmodell in einer komplexen Unternehmensumgebung implementieren?" },
+                { id: 29, frage: "Erörtern Sie die Herausforderungen und Lösungen bei der Datenmigration zwischen verschiedenen Cloud-Diensten und -Plattformen." },
+                { id: 30, frage: "Wie können fortgeschrittene Techniken der Kausalanalyse in großen Datensätzen angewendet werden, um tiefere Einblicke und Verständnis zu gewinnen?" },
+                { id: 31, frage: "Beschreiben Sie die Entwicklung und Anwendung von benutzerdefinierten Erweiterungen in SQL zur Unterstützung spezifischer Geschäftsanforderungen." },
+                { id: 32, frage: "Diskutieren Sie die Implementierung von Multi-Model-Datenbanken und deren Einsatz in komplexen Anwendungsfällen." }
+                ],
             pruefungsFragen: [
                 { id: 1, videoUrl: "https://share.synthesia.io/embeds/videos/e4c36742-45aa-4248-8646-312f79b90e13" },
                 { id: 2, videoUrl: "https://share.synthesia.io/embeds/videos/10be208d-4c46-4edb-8beb-b779794726d6" },

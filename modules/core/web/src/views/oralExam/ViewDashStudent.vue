@@ -1,4 +1,3 @@
-
 <template>
   <!-- Responsiver Inhalt als Gitter im 2x2-Layout -->
   <div class="container">
@@ -106,6 +105,8 @@ router.push( route.path + '/examListStudent');
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(61, 61, 59, 0.6);
 }
 
 .card-title {
@@ -124,4 +125,3 @@ router.push( route.path + '/examListStudent');
   color: rgb(var(--v-theme-primary-dark));
 }
 </style>
-
