@@ -10,6 +10,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import DialogCreateCourse from "../../dialog/DialogCreateCourse.vue";
 import CoursesListDozent from "../../components/oralExaminator/CoursesListDozent.vue";
 import { useAuthUserStore } from "../../stores/authUserStore";
@@ -17,6 +18,7 @@ import GlobalRoles from "../../enums/GlobalRoles";
 
 const authUserStore = useAuthUserStore();
 const router = useRouter();
+const route = useRoute();
 
 const dialogCreateCourse = ref<typeof DialogCreateCourse>();
 const coursesListDozent = ref<typeof CoursesListDozent>();
@@ -32,9 +34,10 @@ onMounted(() => {
 });
 
 const createCourse = () => {
+  console.log(route.path)
   if (dialogCreateCourse.value) {
     dialogCreateCourse.value.openDialog().then((id: number) => {
-      if (id != undefined) router.push("/coursesDozent/" + id);
+      if (id != undefined) router.push(route.path + "/"  + id);
     });
   }
 };
