@@ -39,8 +39,7 @@
       </div>
     </div>
   </div>
-  <DialogEndOfExam v-if=" this.showResult" :punkteAnzahl="this.punkteAnzahl" :gesamtFragen="gesamtFragen"
-    :schwierigkeit="schwierigkeit" />
+  <DialogEndOfExam v-if=" this.showResult" :punkteAnzahl="punkteAnzahl" :gesamtFragen="gesamtFragen" :message="message" :schwierigkeit="schwierigkeit"  />
 </template>
           
           
@@ -111,11 +110,10 @@ export default {
   methods: {
 
     onTimeExpired() {
-      alert('Die Prüfungszeit ist abgelaufen. Die Prüfung wird jetzt abgebrochen.');
-      this.pruefungAbgebrochen = true; // Setzen Sie den Zustand auf abgebrochen
-      // Implementieren Sie hier zusätzliche Logik für den Abbruch der Prüfung
-      // this.$router.push('/');
-      this.$router.push('/dashStudent/examListStudent');
+              this.message = " Die Prüfungszeit  ist leider abgelaufen ist " ; 
+              this.pruefungAbgebrochen = true; // Setzen Sie den Zustand auf abgebrochen
+              // Implementieren Sie hier zusätzliche Logik für den Abbruch der Prüfung
+              this.showResult = true;
     },
 
 
@@ -325,6 +323,11 @@ export default {
 
 
     gotoNextQuestion() {
+      if (this.isRecording) {
+          alert("Sie müssen vorher die Audioaufnahme beenden, bevor Sie zur nächsten Frage navigieren können.");
+          return;
+        }
+        
       if (this.aktuelleFrageIndex < this.gesamtFragen - 1) {
         this.aktuelleFrageIndex++;
         // Aktualisieren Sie this.randomFrageId entsprechend der neuen Auswahl
