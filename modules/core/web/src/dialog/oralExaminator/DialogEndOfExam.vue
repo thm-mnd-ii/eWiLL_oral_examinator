@@ -10,8 +10,6 @@
                     <p>Richtig beantwortete Fragen: {{ correctAnswers }}</p>
                     <p>Schwierigkeit: {{ giveStufe }}</p>
                     <p>Datum: {{ formattedDate }}</p>
-                    <v-textarea style="margin-top: 10px;" v-model="feedback" label="Feedback" outlined
-                        rows="1"></v-textarea>
                 </div>
             </v-card-text>
             <v-card-actions>
@@ -74,10 +72,6 @@ export default {
                 feedback: this.feedback,
             };
 
-            // Hinzufügen des neuen Ergebnisses zum Array
-            // this.ergebnisse.push(newResult);
-
-            // Überprüfen, ob das Array aktualisiert wurde
             console.log(this.ergebnisse);
         },
 

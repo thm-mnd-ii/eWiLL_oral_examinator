@@ -7,17 +7,17 @@
       <v-card-text class="text">
         <v-data-table class="dataTable" :headers="headers" :items="feedbacks">
           <template #item.status="{ item }">
-            <v-select v-model="item.props.title.status" :hide-details="false" variant="plain" :items="feedbackStatuses" @update:model-value="changeStatus(item.props.title)"></v-select>
+            <v-select v-model="item.status" :hide-details="false" variant="plain" :items="feedbackStatuses" @update:model-value="changeStatus(item)"></v-select>
           </template>
           <template #item.actions="{ item }">
-            <v-btn @click="deleteFeedback(item.props.title)">Delete</v-btn>
+            <v-btn @click="deleteFeedback(item)">Delete</v-btn>
           </template>
         </v-data-table>
       </v-card-text>
     </v-card>
   </BasicBackground>
 </template>
-
+  
 <script setup lang="ts">
 import feedbackService from "../services/feedback.service";
 import Feedback from "../model/Feedback";

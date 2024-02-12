@@ -135,7 +135,7 @@ export default {
       }
     },
 
-    toggleRecognition() {                                //starten und ,falls gestartet, beenden der Audioaufnahme
+    toggleRecognition() {                          //starten und ,falls gestartet, beendent die Audioaufnahme
       if (this.recognition && this.isRecording) {
         this.recognition.stop();
         this.isRecording = false;
@@ -150,18 +150,21 @@ export default {
         alert('Die Spracherkennung wird von Ihrem Browser nicht unterstützt.');
         return;
       }
-
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;    //erzeugen einer neuen Spracherkennung
+    //erzeugen einer neuen Spracherkennungs-Instanz
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;  
       this.recognition = new SpeechRecognition();
       this.recognition.lang = 'de-DE';
       this.recognition.continuous = true;
       this.recognition.interimResults = false;
 
+      // erkannte Spracheingabe des Nutzer  wird dem Transkript hinzugefügt 
       this.recognition.onresult = (event) => {
         this.transcript += event.results[event.results.length - 1][0].transcript;
         console.log('Erkannter Text:', this.transcript);
       };
 
+      //Sobald die Aufnahme beendet ist,werden innerhalb der bewerteAnwort()-Funktion die Passenden Lösungs-Signalwörter  
+      // zugehörig zur aktuellen Frage gesucht  und Bewertungslogik der Antwort setzt ein
       this.recognition.onend = () => {
         if (!this.isRecording) {
           const aktuelleFrageId = this.pruefungsFragen[this.aktuelleFrageIndex].id; 
@@ -177,14 +180,13 @@ export default {
 
       this.recognition.start();
     },
-
+//der einfachheitshalber soll jedes gesprochenen  Wort in kleinbuchstaben umgeformt werden  und alle Sonderzeichen sollen durch ein Leerzeichen ersetzt werden
     normalisiereTranskript(transkript) {
-      return transkript.toLowerCase().replace(/[.,-/#!$%^&*;:{}=\-_`~()]/g, "").replace(/\s+/g, ' ').trim(); // der einfachheitshalber soll jedes gesprochen
-    },
-
-
+      return transkript.toLowerCase().replace(/[.,-/#!$%^&*;:{}=\-_`~()]/g, "").replace(/\s+/g, ' ').trim(); 
+    },                                                                                                       
+                                                                                        
     pluralize(word) {
-      // Pluralisierungslogik für spezielle Fälle in der deutschen Sprache
+      // Pluralisierungslogik für spezielle Fälle in der deutschen Sprache z.B."Freundin" zu "Freundinnen"
       if (word.endsWith('us')) {
         return word.replace(/us$/, 'üse'); // Plural von Wörtern, die auf "us" enden
       } else if (word.endsWith('is')) {
@@ -201,7 +203,7 @@ export default {
     },
 
     depluralize(word) {
-      // Depluralisierungslogik für spezielle Fälle in der deutschen Sprache
+      // Depluralisierungslogik für spezielle Fälle in der deutschen Sprache z.B. Freundinnen zu Freundin
       if (word.endsWith('üse')) {
         return word.replace(/üse$/, 'us'); // Singular von Wörtern, die auf "üse" enden
       } else if (word.endsWith('en')) {
@@ -232,7 +234,8 @@ export default {
 
       return combinedWords;
     },
-
+// berechnet die minimale Anzahl von Einfüge-, Lösch- und Ersetzungsoperationen darstellt um zu ermitteln "wie weit entfernt" 
+// "wie weit entfernt"  der eine String vpm anderen ist",
     levenshtein(a, b) {
       const matrix = [];
       let i;
@@ -260,9 +263,6 @@ export default {
     },
 
     bewerteAntwort(transkript) {
-      
-
-
       const frageId = this.randomFrageId; // Nutzen Sie die aktuell ausgewählte Frage-ID
       const frage = this.stichpunkte.find(frage => frage.frageId === frageId + 1);
 
@@ -291,14 +291,15 @@ export default {
           }
         });
       });
-
+//   wenn mind. die Hälfte der relevanten "Lösungsstichworte" in der Audioeingabe des Nutzers enthalten war 
+//   => Frage ist richtig beantwortet und der Nutzer bekommt einen Punkt
       const bewertungErgebnis = erkannteLoesungenCount >= Math.ceil(relevanteLoesungen.length / 2);
       this.bewertung = bewertungErgebnis ? 'Richtig' : 'Falsch';
       if (this.bewertung === "Richtig") this.punkteAnzahl++;
 
 
       // Debugging-Ausgaben
-
+      // für Präsentation vlt behalten später löschen
       console.log(`Erkannte Lösungen: ${erkannteLoesungenCount}`);
       console.log(`Erforderliche Lösungen: ${Math.ceil(relevanteLoesungen.length / 2)}`);
       console.log(`Bewertung: ${this.bewertung}`);
@@ -308,7 +309,9 @@ export default {
     },
 
 
+    //Logik für damit als nächstes eine zufällige Frage ausgewählt wird
     gotoNextQuestion() {
+      // falls die Audioeingabe des Nutzers noch "getoggled" ist, beim Klick auf den Button folgende Nachricht 
       if (this.isRecording) {
         alert("Sie müssen vorher die Audioaufnahme beenden, bevor Sie zur nächsten Frage navigieren können.");
         return;
@@ -388,9 +391,9 @@ export default {
           align-items: center;
           width: 40px;
           height: 40px;
-          border: 2px solid currentColor; /* Farbe des Icons */
+          border: 2px solid currentColor; 
           border-radius: 50%;
-          color: #555; /* Farbe des Icons */
+          color: #555; 
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
           }
           

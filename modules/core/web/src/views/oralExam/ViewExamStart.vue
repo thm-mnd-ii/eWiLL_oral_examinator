@@ -36,9 +36,9 @@ const authUserStore = useAuthUserStore();
 
 const course = ref<CoursePL>();
 const courseId = ref(Number(route.params.examId));
-let userId = authUserStore.auth.user?.id;
 
-const startOralExaminator = () => {
+//beim klick navigiere zur Prüfung
+const startOralExaminator = () => { 
     router.push(route.path + '/' + course.value?.description);
 };
 
@@ -71,14 +71,14 @@ const fetchCourseData = () => {
 }
 
 .card {
-  width: 80%; /* Breite der Karte anpassen */
+  width: 80%; 
   max-width: 500px; /* Maximale Breite der Karte setzen */
-  padding: 2rem; /* Innenabstand der Karte erhöhen */
+  padding: 2rem; 
 }
 
 .card-title {
   text-align: center; /* Titel zentrieren */
-  font-size: 1.5rem; /* Größere Schriftgröße für den Titel */
+  font-size: 1.5rem; 
 }
 
 .card-text {

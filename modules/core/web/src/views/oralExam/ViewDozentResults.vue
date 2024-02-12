@@ -42,6 +42,7 @@ onMounted(() => {
     fetchCourseData(); // Hier wird die Methode beim Komponentenmount aufgerufen
 });
 
+// übergeben der aktuellen Prüfungsdaten
 const fetchCourseData = () => {
   courseService.getCourse(courseId.value)
     .then((response) => {
