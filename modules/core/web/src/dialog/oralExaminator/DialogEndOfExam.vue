@@ -1,8 +1,7 @@
 <template>
     <v-dialog v-model="showResult" max-width="700" :persistent="true">
         <v-card class="result-card">
-            <v-card-title class="result-title">Ergebnisse</v-card-title>
-            <v-card-subtitle v-if="message != null" class="result-subtitle">{{ message }}</v-card-subtitle>
+            <v-card-title v-if="message != null" class="result-subtitle">{{ message }}</v-card-title>
             <v-card-title class="result-title">Ergebnis</v-card-title>
             <v-card-text>
                 <div>
