@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!-- View die dem Admin alle Frage, Urls und Stichpunkte anzeigt -->
     <h2>Prüfungsfragen</h2>
     <v-row>
       <v-col cols="12" v-for="(frage, index) in fragenText" :key="frage.id">

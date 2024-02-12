@@ -1,6 +1,7 @@
 <template>
   <BasicBackground>
     <div class="course">
+      <!-- Seite um in der jeweiligen Prüfung, die Fragen und Ergebnisse einzusehen -->
       <v-card>
         <v-card-title class="align-items-center">
           <h3 class="headline mb-0">{{ course?.name }}</h3>
@@ -23,9 +24,10 @@
           </div>
         </v-card-text>
       </v-card>
+      <!-- Dialog zum Erstellen eines Kurses -->
       <DialogCreateCourse ref="dialogCreateCourse"></DialogCreateCourse>
 
-
+      <!-- Karte für das Ansehen des Fragekatalogs -->
       <v-card class="card" @click="navigateToCreateQuestionnaire">
         <v-card-title class="title">Fragenkatalog einsehen</v-card-title>
         <v-card-text class="text">
@@ -36,6 +38,7 @@
         </v-card-actions>
       </v-card>
 
+      <!-- Karte für das Ansehen der Prüfungsergebnisse -->
       <v-card class="card" @click="navigateToViewResults">
         <v-card-title class="title">Prüfungsergebnisse einsehen</v-card-title>
         <v-card-text class="text">
@@ -54,16 +57,12 @@ import { onMounted, ref} from "vue";
 import { useRoute } from "vue-router";
 import { useAuthUserStore } from "../../stores/authUserStore";
 import { useRouter } from "vue-router";
-
 import TaskList from "../../components/TaskList.vue";
 import CoursePL from "../../model/course/CoursePL";
 import courseService from "../../services/course.service";
-
-import DialogConfirmVue from "../../dialog/DialogConfirm.vue";
 import DialogCreateCourse from "@/dialog/DialogCreateCourse.vue";
-import DialogEditTask from "@/dialog/DialogEditTask.vue";
 import BasicBackground from "@/components/BasicBackground.vue";
-import ViewCreateQuestion from "../oralExam/ViewCreateQuestion.vue";
+
 
 
 const route = useRoute();
@@ -72,17 +71,13 @@ const authUserStore = useAuthUserStore();
 
 const taskList = ref<typeof TaskList>();
 const course = ref<CoursePL>();
-// neuer Path
+
+// Kurs ID und Benutzer ID
 const courseId = ref(Number(route.params.createExamId));
 const userId = ref(authUserStore.auth.user?.id);
 const courseRole = ref("");
 
-const dialogConfirm = ref<typeof DialogConfirmVue>();
 const dialogCreateCourse = ref<typeof DialogCreateCourse>();
-const dialogCreateTask = ref<typeof DialogEditTask>();
-const dialogCreateQuestion = ref<typeof ViewCreateQuestion>();
-
-
 
 
 onMounted(() => {
@@ -102,6 +97,7 @@ onMounted(() => {
   });
 });
 
+// Funktion zum Bearbeiten/Löschen der Prüfung
 const editCourse = () => {
   console.log("edit");
   if (dialogCreateCourse.value) {

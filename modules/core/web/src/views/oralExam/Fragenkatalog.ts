@@ -1,7 +1,6 @@
-
+//Aus dieser Datei werden für die jeweiligen Prüfungen von Stufe 1-3, die Daten abgerufen 
 export const Fragenkatalog = {
     
-
     dataStufe1() {
         return {
             pruefungAbgebrochen: false,
@@ -18,8 +17,9 @@ export const Fragenkatalog = {
             aktuelleFrageIndex: 0, // Starten mit 0 für die erste Frage
             gesamtFragen: 10, // In diesem Beispiel gibt es insgesamt 10 Fragen
             randomFrageId: 0,
-            punkteAnzahl: 0,
-            username: null,
+            punkteAnzahl: 0, //  Hier wird die Gesamtpunktzahl gespeichert
+            username: null, 
+            // Hier werden die Fragen gespeichert
             fragenText: [
                 { id: 1, frage: "Was versteht man unter Datenmanagement?" },
                 { id: 2, frage: "Welche Rolle spielen Daten in der heutigen Gesellschaft?" },
@@ -55,6 +55,7 @@ export const Fragenkatalog = {
                 { id: 32, frage: "Wie beeinflussen mobile Geräte und Apps das Datenmanagement?" },
                 { id: 33, frage: "Wie kann man Datenanalysefähigkeiten effektiv in einem Unternehmen schulen?" }
             ],
+            // Hier sind die Video zu den jeweiligen Fragen
             pruefungsFragen: [
                 { id: 1, videoUrl: "https://share.synthesia.io/embeds/videos/e173ed25-0747-4d21-88dc-b724fa7d21d8" },
                 { id: 2, videoUrl: "https://share.synthesia.io/embeds/videos/8ab9d3b2-f343-47ac-9244-52785ff584af" },
@@ -90,6 +91,7 @@ export const Fragenkatalog = {
                 { id: 32, videoUrl: "https://share.synthesia.io/embeds/videos/6e9123cd-4eee-4cbd-a4c6-b69de9085dfc" },
                 { id: 33, videoUrl: "https://share.synthesia.io/embeds/videos/cce977ea-7802-4213-81b1-c592559922b0" },
             ],
+            // Hier wurden die Stichpunkte abgespeichert, die während der Prüfung verglichen werden 
             stichpunkte: [
                 { frageId: 1, loesungen: ["Systematische", "Organisation", "Speicherung", "Pflege", "Daten"] },
                 { frageId: 2, loesungen: ["Entscheidung", "Findung", "Erkenntnis", "Gewinnung", "Trend", "Analyse"] },
@@ -125,7 +127,8 @@ export const Fragenkatalog = {
                 { frageId: 32, loesungen: ["Daten", "Zugriff", "Daten", "Sicherheit", "mobil", "Anwendung"] },
                 { frageId: 33, loesungen: ["Weiterbildung", "Workshops", "Online", "Kurse"] },
             ],
-            showResult: false,
+            showResult: false,  // Wird auf true gesetzt, wenn alle Fragen beantwortet sind, um das Resultat anzuzeigen
+            //Hier sind ein paar Beispiel Ergebnisse, die beim Dozentenansicht unter Prüfungsergebnisse angezeigt werden können
             ergebnisse: [
                 { username: "user1", punkte: "2/10", status: "nicht bestanden", datum: "10.02.24", stufe: "Leicht" , feedback: "Feedback 1" },
                 { username: "user2", punkte: "8/10", status: "bestanden", datum: "12.02.24", stufe: "Leicht" , feedback: "Feedback 2" },

@@ -1,29 +1,29 @@
 <template>
-    <div>
-        <h2>Prüfungsergebnisse</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Punkte</th>
-                    <th>Status</th>
-                    <th>Datum</th>
-                    <th>Stufe</th>
-                    <th>Feedback</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(ergebnis, index) in ergebnisse" :key="index">
-                    <td>{{ ergebnis.username }}</td>
-                    <td>{{ ergebnis.punkte }}</td>
-                    <td>{{ ergebnis.status }}</td>
-                    <td>{{ ergebnis.datum }}</td>
-                    <td>{{ ergebnis.stufe }}</td>
-                    <td class="feedback">{{ ergebnis.feedback }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div>
+    <h2>Prüfungsergebnisse</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Punkte</th>
+          <th>Status</th>
+          <th>Datum</th>
+          <th>Stufe</th>
+          <th>Feedback</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(ergebnis, index) in ergebnisse" :key="index">
+          <td>{{ ergebnis.username }}</td>
+          <td>{{ ergebnis.punkte }}</td>
+          <td>{{ ergebnis.status }}</td>
+          <td>{{ ergebnis.datum }}</td>
+          <td>{{ ergebnis.stufe }}</td>
+          <td class="feedback">{{ ergebnis.feedback }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -45,12 +45,11 @@ onMounted(() => {
 const fetchCourseData = () => {
   courseService.getCourse(courseId.value)
     .then((response) => {
-      // Successfully received course data
-      course.value = response.data; // Save the course data in the ref
+      course.value = response.data; 
       console.log("Kursdaten erhalten:", course.value);
       const description = course.value?.description;
 
-      // Filter ergebnisse based on description
+      // Filter ergebnisse anhand der Beschreibung
       if (description === "Leicht") {
         ergebnisse.value = Fragenkatalog.dataStufe1().ergebnisse;
       } else if (description === "Mittel") {
@@ -72,25 +71,24 @@ const ergebnisse = ref(Fragenkatalog.dataStufe1().ergebnisse);
 
 <style scoped>
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 10px;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px;
 }
 
 th,
 td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 .feedback {
-    max-width: 100px;
-    /* Hier kannst du die Breite nach Bedarf anpassen */
-    word-wrap: break-word;
+  max-width: 100px;
+  word-wrap: break-word;
 }
 </style>

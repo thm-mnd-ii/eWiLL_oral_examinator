@@ -48,7 +48,7 @@ import {useRouter} from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 
-// Function to redirect to student page
+// Funktion um zu den Kursen des Dozenten weiterzuleiten
 const redirectToDozentCourses = () => {
   router.push( route.path + '/coursesDozent');
 };

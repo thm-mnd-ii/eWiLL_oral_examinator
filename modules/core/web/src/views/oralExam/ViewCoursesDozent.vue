@@ -1,7 +1,10 @@
 <!-- eslint-disable vue/valid-v-slot -->
 <template>
   <div class="container">
+    <!-- CoursesListDozent ist eine Komponente die dazu dient alle Prüfungen anzuzeigen -->
     <CoursesListDozent ref="coursesListDozent"></CoursesListDozent>
+
+    <!-- Button wird nur dem Admin angezeigt -->
     <v-btn v-if="isAdmin" id="createCourseBtn" color="primary-dark" @click="createCourse">Kurs erstellen</v-btn>
   </div>
   <DialogCreateCourse ref="dialogCreateCourse"></DialogCreateCourse>
@@ -27,8 +30,9 @@ const isAdmin = ref(false);
 const isUser = ref();
 
 onMounted(() => {
+  //Lädt die Kurse, sobald die Komponente montiert ist
   coursesListDozent.value?.loadCourses();
-
+  // Bestimmt, ob der Benutzer ein Administrator ist
   isAdmin.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_ADMIN)!;
   isUser.value = authUserStore.user?.roles.includes(GlobalRoles.ROLE_USER);
 });
@@ -36,6 +40,7 @@ onMounted(() => {
 const createCourse = () => {
   console.log(route.path)
   if (dialogCreateCourse.value) {
+    // Öffnet den Dialog zum Erstellen eines Kurses und navigiert zur neuen Kursseite
     dialogCreateCourse.value.openDialog().then((id: number) => {
       if (id != undefined) router.push(route.path + "/"  + id);
     });
